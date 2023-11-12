@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cinema Rocket</title>
+    <link rel="Icon" href="img/Cat_Favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300&family=Playpen+Sans:wght@800&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <header>
+        <ul>
+            <li><a href="#Sucursales">Sucursales</a></li>
+            <li><a href="#Promociones">Promociones</a></li>
+            <li><a href="#InfoCine">Acerca de nosotros</a></li>
+         </ul>
+        <img id="LogoDelCine" src="img/LogoGatoNegro.png" alt="LogoDelCine">
+        <h1 id="TituloCine"> Cinema Rocket </h1>
+    </header>
+    <nav> 
+        <div>
+            <form class="Filtros">
+                <label for="Titulo" >Titulo:</label>
+                <input type="text" name="Titulo" id="Titulo" value="">
+                <label for="Genero" >Genero:</label>
+                <select id="Genero">
+                <option value="" selected>Seleccione género...</option>
+                <option value="1">Acción</option>
+                <option value="2">Aventuras</option>
+                <option value="3">Ciencia ficción</option>
+                <option value="4">Comedia</option>
+                <option value="5">Documental</option>
+                <option value="6">Drama</option>
+                <option value="7">Fantasía</option>
+                <option value="8">Musical</option>
+                <option value="9">Suspenso</option>
+                <option value="10">Terror</option>
+                </select>
+                <label for="Fecha" >Fecha:</label>
+                <input type="date" name="Fecha" id="Fecha">
+                <button type="submit" id="BotonBusqueda">Buscar</button>
+                <button Class="EliminarFiltros" type="submit">Eliminar Filtros</button>
+            </form>
+            </div>
+          </div>
+    </nav>
+
+    <section>
+      
+      <div id="Desplegable-Pelicula"> 
+        <div id="Poster-Trailer"> 
+          <div id="informacion_Superior">
+            <img id ="Poster" src="https://media.vandal.net/i/620x981/2-2023/2023241026142_1.jpg" alt="Mario Bros the movie">
+          </div>
+        <div id="trailer">
+          <video src=${trailer}  alt="Trailer de ${titulo}">
+        </div>
+        <div id="Descripcion">
+          <p>Titulo: ${titulo} <br>Genero: ${Genero} <br>Duración: ${Duracion} <br>Sintaxis: ${Descripción}</p>
+        </div>
+      </div> 
+      <!-- <div id="InfoPelicula">
+        <!-- <div id="informacion_Inferior">
+          <p id="datos"> Titulo: ${titulo} <br>Genero: ${Genero} <br>Duración: ${Duracion} </p>
+        </div>--> 
+      <div id="Contenedor-Boton">
+        <button id="ConsultarFunciones-Dia-Horario">Ver Fecha y hora de las funciones</button>
+      </div>
+    </div>
+      <!-- <div id="ConsultarFunciones"></div> -->
+      
+      <div class="Funciones">
+      </div>
+    
+    </section>
+
+    <footer>
+      
+    </footer>
+    <script src="./Services/FuncionesServices/GetFunciones.js" type="module"></script>
+    <script src="./html dinamicos/llamados.js" type="module"></script>
+</body>
+</html>

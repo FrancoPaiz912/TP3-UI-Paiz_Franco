@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cinema Rocket</title>
+        <link rel="Icon" href="img/Cat_Favicon.ico" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300&family=Playpen+Sans:wght@800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="Style.css">
+    </head>
+    <body>
+        <header>
+            <ul>
+                <li><a href="#Sucursales">Sucursales</a></li>
+                <li><a href="#Promociones">Promociones</a></li>
+                <li><a href="#InfoCine">Acerca de nosotros</a></li>
+             </ul>
+            <img id="LogoDelCine" src="img/LogoGatoNegro.png" alt="LogoDelCine">
+            <h1 id="TituloCine">  Cinema Rocket </h1>
+        </header>
+        <section>
+            <div class="Informacion_Pelicula">
+                <div id="Pelicula">
+
+                </div>
+                <div id="Trailer">
+
+                </div>
+            </div>
+
+            <div id="Poster-Trailer"> 
+                <div id="informacion_Superior">
+                  <img id ="Poster" src="https://media.vandal.net/i/620x981/2-2023/2023241026142_1.jpg" alt="Mario Bros the movie">
+                </div>
+                <div id="trailer">
+                  <video src=${trailer}  alt="Trailer de ${titulo}">
+                </div>
+              </div> 
+              <div id="InfoPelicula">
+                <div id="informacion_Inferior">
+                  <p id="datos"> ${titulo} <br>${Genero} <br>${Duracion} </p>
+                </div>
+                <div id="Descripcion">
+                  <p>${Descripción}</p>
+                </div>
+              </div>
+              <div id="Contenedor-Boton">
+                <button id="ConsultarFunciones-Dia-Horario">Ver días y horarios de las funciones</button>
+              </div>
+
+
+        </section>
+    </body>
+</html>

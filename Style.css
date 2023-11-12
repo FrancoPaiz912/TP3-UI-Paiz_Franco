@@ -1,0 +1,236 @@
+body{
+  background-color: black;
+  overflow-x: hidden;
+}
+
+header{
+  width: 90vw;
+  height: 40rem;
+  margin: auto;
+  background-image: url('img/sala-cine.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+#LogoDelCine{
+  margin-left: 38vw;
+  width: 10rem;
+  height: 9rem;
+  margin-top: 5rem;
+  margin-bottom: none;
+  padding: none;
+}
+
+#TituloCine{
+  text-align: center;
+  margin-top: none;
+  margin-left: 38vw;
+  margin-top: -2.5rem;
+  width: 10rem;
+  font-family: 'Playpen Sans','Handjet', cursive;
+  color: rgb(19, 20, 19);
+  text-shadow: 1px 1px 2px rgb(255, 231, 231), 0 0 25px rgb(96, 96, 255), 0 0 5px rgb(14, 0, 139);
+}
+
+.Filtros {
+  position: relative;
+  left: 9vw;
+  top: 2vw;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+  width: 8vw;
+  height: 3vh;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+label {
+  color: aliceblue;
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+select{
+  width: 8vw;
+  height: 3vh;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+button {
+  background-color: #00bd6e;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 15vw;
+  height: 4vh;
+  margin-left: 1rem;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+  
+li {
+  float: left;
+}
+  
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+  
+li a:hover {
+  background-color: #111;
+}
+
+.presentacion{
+  position: relative;
+}
+
+.InfoPelicula{
+  position: relative;
+  top: 4vh;
+  display: inline-block;
+}
+
+.Funciones{
+  margin-top: 5rem;
+  margin-left: 10rem; 
+  margin-right: 10rem;
+}
+
+.card:hover{
+  box-shadow: 1px  5px 10px whitesmoke;
+  transform: scale(1.05);
+}
+
+.card{
+  width: 18rem;
+  height: 31rem;
+  float: left;
+  margin: 10px 10px 10px 10px;
+  border-color: rgb(97, 92, 105);
+}
+
+.card-img-top{
+  width: 100%;
+  height: 80%;
+}
+
+.card-body{
+  height: 1px;
+  background-color: rgb(85, 173, 228);
+}
+
+.card-text{
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  text-align: center;
+}
+
+h2{
+  color: aliceblue;
+  text-align: center;
+}
+
+.EliminarFiltros{
+  background-color: rgb(238, 104, 104);
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+
+/* footer{
+  background-color: #282727;
+} */
+
+#Desplegable-Pelicula{
+  background-color: #131313;
+  margin-left: 15.5vw;
+  margin-right: 15.5vw;
+}
+
+#Poster-Trailer{
+  display: flex;
+  margin-top: 7vh;
+  padding-top: 7vh;
+  padding-right: 5vw;
+  padding-left: 5vw;
+  width: 100%;
+}
+
+#informacion_Superior{
+  width: 15vw;
+  height: 20vh;
+}
+
+#Poster{
+  width: auto;
+  height: 40vh;
+  border: solid 2px;
+  border-color: goldenrod;
+}
+
+#trailer{
+  background-color: violet;
+  width: 42vw;
+  margin-left: 7rem;
+  height: 28vh;
+}
+
+#InfoPelicula{
+  display: flex;
+  /* padding-right: 5vw;
+  padding-left: 5vw; */
+  width: auto;
+  margin-top: 5.5rem;
+  margin-left: 6rem;
+  margin-right: 4rem;
+  /* max-width: ; */
+}
+
+/* #informacion_Inferior{
+  background-color: rgb(85, 173, 228); 
+  width: 14vw;
+  height: 13vh;
+} */
+
+#datos{
+color: aliceblue;
+}
+
+#Descripcion{
+  margin-left: 22vw;
+  background-color: rgb(85, 173, 228);
+  margin-top: -5rem;
+  width: 100%; 
+  height: 10vh;
+  color: aliceblue;
+} 
+
+#Contenedor-Boton{
+  position: relative;
+  padding-right: 3vw;
+  margin-left: 1vw;
+}
+
+#ConsultarFunciones-Dia-Horario{
+  background-color: #00bd6e;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+/* Pasando a vw/vh */
