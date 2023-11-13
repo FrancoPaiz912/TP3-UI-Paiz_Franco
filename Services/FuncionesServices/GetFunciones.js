@@ -59,8 +59,10 @@ async function BusquedaPelicula(id){
 
 seccion.addEventListener("click", (e) => {
     e.preventDefault();
-    var elementoClicado = e.target;
+    let elementoClicado = e.target;
     BusquedaPelicula(elementoClicado.id);
+    let PeliculaReferencia = document.getElementById("Desplegable-Pelicula");
+    PeliculaReferencia.scrollIntoView({ behavior: "smooth" });
 });
 
 
