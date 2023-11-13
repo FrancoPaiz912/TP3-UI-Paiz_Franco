@@ -1,4 +1,4 @@
-import { seccion } from "./llamados.js";
+import { InformacionPelicula, seccion } from "./llamados.js";
 
 export function EvitarRepeticion(funciones){
     const contenedor = new Set();
@@ -22,16 +22,19 @@ export function FuncionesAMapear(funciones, contenedor){
 }
 
 export function MostrarFunciones(funcionesMapeadas){
-
-        seccion.removeChild(seccion.firstChild);
-
+    seccion.removeChild(seccion.firstChild);
     const Hijo = document.createElement('Hijo');
     Hijo.innerHTML = funcionesMapeadas;
     seccion.appendChild(Hijo);
 }; //¿Debería eliminar los hijos? 
 
-export function CambiarHijo(funcionesMapeadas){
-
+export function MostarInfoPelicula(Pelicula){
+    if(InformacionPelicula.children.length > 0){
+        InformacionPelicula.removeChild(InformacionPelicula.children[0]);
+    };
+    const Hijo= document.createElement('Hijo');
+    Hijo.innerHTML = Pelicula;
+    InformacionPelicula.appendChild(Hijo);
 }
 
 

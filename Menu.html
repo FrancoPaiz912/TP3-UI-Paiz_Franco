@@ -19,7 +19,6 @@
         <h1 id="TituloCine"> Cinema Rocket </h1>
     </header>
     <nav> 
-        <div>
             <form class="Filtros">
                 <label for="Titulo" >Titulo:</label>
                 <input type="text" name="Titulo" id="Titulo" value="">
@@ -42,41 +41,37 @@
                 <button type="submit" id="BotonBusqueda">Buscar</button>
                 <button Class="EliminarFiltros" type="submit">Eliminar Filtros</button>
             </form>
-            </div>
-          </div>
     </nav>
 
     <section>
       
-      <div id="Desplegable-Pelicula"> 
-        <div id="Poster-Trailer"> 
-          <div id="informacion_Superior">
+      <div id="Desplegable-Pelicula">
+        </div> 
+        <!-- <div id="Marco-Informacion"> 
+          <div id="Contenedor-Poster">
             <img id ="Poster" src="https://media.vandal.net/i/620x981/2-2023/2023241026142_1.jpg" alt="Mario Bros the movie">
           </div>
-        <div id="trailer">
-          <video src=${trailer}  alt="Trailer de ${titulo}">
+          <div id="InfoPelicula">
+            <div id="trailer">
+              <video alt="Trailer de ${titulo}">
+            </div>
+            <div id="Descripcion">
+              <p>Titulo: ${titulo} <br>Genero: ${Genero} <br>Duración: ${Duracion} <br>Sintaxis: ${Descripción}</p>
+            </div>
+            <div id="Contenedor-Boton">
+              <button id="ConsultarFunciones-Dia-Horario">Ver fecha y hora de las funciones</button>
+            </div>
+          </div>
         </div>
-        <div id="Descripcion">
-          <p>Titulo: ${titulo} <br>Genero: ${Genero} <br>Duración: ${Duracion} <br>Sintaxis: ${Descripción}</p>
-        </div>
-      </div> 
-      <!-- <div id="InfoPelicula">
-        <!-- <div id="informacion_Inferior">
-          <p id="datos"> Titulo: ${titulo} <br>Genero: ${Genero} <br>Duración: ${Duracion} </p>
-        </div>--> 
-      <div id="Contenedor-Boton">
-        <button id="ConsultarFunciones-Dia-Horario">Ver Fecha y hora de las funciones</button>
-      </div>
-    </div>
-      <!-- <div id="ConsultarFunciones"></div> -->
-      
+      </div>   -->
+
       <div class="Funciones">
       </div>
     
     </section>
 
     <footer>
-      
+      <div></div>
     </footer>
     <script src="./Services/FuncionesServices/GetFunciones.js" type="module"></script>
     <script src="./html dinamicos/llamados.js" type="module"></script>

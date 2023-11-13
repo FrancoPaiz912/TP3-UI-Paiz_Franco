@@ -1,13 +1,15 @@
-import { Mapeo, MensajeAlternativo} from "../../Mapeos/MapeoFunciones.js";
-import { EvitarRepeticion, FuncionesAMapear, MostrarFunciones } from "../../html dinamicos/Muestreo.js";
-export var funciones = [];
+import { MapeadorInformacion, Mapeofunciones, MensajeAlternativo} from "../../Mapeos/MapeoFunciones.js";
+import { EvitarRepeticion, FuncionesAMapear, MostarInfoPelicula, MostrarFunciones } from "../../html dinamicos/Muestreo.js";
+import { seccion } from "../../html dinamicos/llamados.js";
+import { CargarPeliculas } from "../PeliculasServices/GetPeliculas.js";
+// export var funciones = [];
 
 window.onload = async function() {
-    funciones = await CargarFunciones("","",""); 
+    let funciones = await CargarFunciones("","",""); 
     let indices = EvitarRepeticion(funciones);
     let cartelera = FuncionesAMapear(funciones, indices);
-    let funcionesMapeadas = Mapeo(cartelera);
-    MostrarFunciones(funcionesMapeadas);
+    let funcionesMapeadas = Mapeofunciones(cartelera);
+    MostrarFunciones(funcionesMapeadas); 
 };
 
 export async function CargarFunciones (titulo, genero, fecha){
@@ -20,8 +22,7 @@ export async function CargarFunciones (titulo, genero, fecha){
     ;
     try{
         const response = await fetch (`https://localhost:7030/api/v1/Funcion?fecha=${fecha}&titulo=${titulo}&genero=${genero}`, config);
-        const result = await response.json();
-        return result; 
+        return await response.json(); 
     }catch(error){
         console.log(error);
     }
@@ -37,7 +38,7 @@ async function BusquedaFiltrada (){
     if (result.length > 0){
     let indices = EvitarRepeticion(result);
     let cartelera = FuncionesAMapear(result, indices);
-    funcionesMapeadas = Mapeo(cartelera);
+    funcionesMapeadas = Mapeofunciones(cartelera);
     }
     else funcionesMapeadas = MensajeAlternativo();
     MostrarFunciones(funcionesMapeadas);
@@ -48,7 +49,21 @@ const boton = document.getElementById("BotonBusqueda");
 boton.addEventListener("click", (e) => {
     e.preventDefault();
     BusquedaFiltrada();
-    });
+});
+
+async function BusquedaPelicula(id){
+    const pelicula=await CargarPeliculas(id);
+    const InfoPelicula=MapeadorInformacion(pelicula.titulo, pelicula.poster, pelicula.trailer, pelicula.genero.nombre, pelicula.sinopsis);
+    MostarInfoPelicula(InfoPelicula);
+}
+
+seccion.addEventListener("click", (e) => {
+    e.preventDefault();
+    var elementoClicado = e.target;
+    BusquedaPelicula(elementoClicado.id);
+});
+
+
 
 
 export default 

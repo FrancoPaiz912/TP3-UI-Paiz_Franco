@@ -114,6 +114,7 @@ li a:hover {
 .card:hover{
   box-shadow: 1px  5px 10px whitesmoke;
   transform: scale(1.05);
+  transition: 0.6s;
 }
 
 .card{
@@ -151,86 +152,61 @@ h2{
   white-space: nowrap;
 }
 
-
 /* footer{
+  position: static;
   background-color: #282727;
 } */
 
-#Desplegable-Pelicula{
+#Marco-Informacion{
+  margin-top: 5rem;
   background-color: #131313;
-  margin-left: 15.5vw;
-  margin-right: 15.5vw;
-}
-
-#Poster-Trailer{
+  max-width: 80%;
+  margin-left: 10vw;
   display: flex;
-  margin-top: 7vh;
-  padding-top: 7vh;
-  padding-right: 5vw;
-  padding-left: 5vw;
-  width: 100%;
+  padding: 4vh 4vw 4vw 4vh;
 }
 
-#informacion_Superior{
-  width: 15vw;
-  height: 20vh;
+#Contenedor-Poster{
+  height: 40rem;
+  width: 40rem;
 }
+
 
 #Poster{
-  width: auto;
-  height: 40vh;
+  height: 100%;
+  width: 100%;
   border: solid 2px;
   border-color: goldenrod;
-}
-
-#trailer{
-  background-color: violet;
-  width: 42vw;
-  margin-left: 7rem;
-  height: 28vh;
+  margin-bottom: none;
 }
 
 #InfoPelicula{
+  margin-left: 5rem;
+  width: 100%;
   display: flex;
-  /* padding-right: 5vw;
-  padding-left: 5vw; */
-  width: auto;
-  margin-top: 5.5rem;
-  margin-left: 6rem;
-  margin-right: 4rem;
-  /* max-width: ; */
+  flex-direction: column; 
 }
 
-/* #informacion_Inferior{
-  background-color: rgb(85, 173, 228); 
-  width: 14vw;
-  height: 13vh;
-} */
-
-#datos{
-color: aliceblue;
+#trailer{
+  background-color: red;
+  height: 20vh;
 }
 
 #Descripcion{
-  margin-left: 22vw;
-  background-color: rgb(85, 173, 228);
-  margin-top: -5rem;
   width: 100%; 
   height: 10vh;
+  margin-top: 1rem;
   color: aliceblue;
 } 
 
 #Contenedor-Boton{
-  position: relative;
-  padding-right: 3vw;
-  margin-left: 1vw;
+  margin-top: 2rem;
 }
 
 #ConsultarFunciones-Dia-Horario{
   background-color: #00bd6e;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-left: 0px;
+  margin-top: 10vh;
+  padding: none;
   width: 100%;
 }
-
-/* Pasando a vw/vh */

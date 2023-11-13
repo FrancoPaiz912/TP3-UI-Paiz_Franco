@@ -26,25 +26,24 @@
                 </div>
             </div>
 
-            <div id="Poster-Trailer"> 
-                <div id="informacion_Superior">
+            <div id="Desplegable-Pelicula"> 
+              <div id="Marco-Informacion"> 
+                <div>
                   <img id ="Poster" src="https://media.vandal.net/i/620x981/2-2023/2023241026142_1.jpg" alt="Mario Bros the movie">
                 </div>
-                <div id="trailer">
-                  <video src=${trailer}  alt="Trailer de ${titulo}">
-                </div>
-              </div> 
-              <div id="InfoPelicula">
-                <div id="informacion_Inferior">
-                  <p id="datos"> ${titulo} <br>${Genero} <br>${Duracion} </p>
-                </div>
-                <div id="Descripcion">
-                  <p>${Descripción}</p>
+                <div id="InfoPelicula">
+                  <div id="trailer">
+                    <video src=${trailer}  alt="Trailer de ${titulo}">
+                  </div>
+                  <div id="Descripcion">
+                    <p>Titulo: ${titulo} <br>Genero: ${Genero} <br>Duración: ${Duracion} <br>Sintaxis: ${Descripción}</p>
+                  </div>
+                  <div id="Contenedor-Boton">
+                    <button id="ConsultarFunciones-Dia-Horario">Ver Fecha y hora de las funciones</button>
+                  </div>
                 </div>
               </div>
-              <div id="Contenedor-Boton">
-                <button id="ConsultarFunciones-Dia-Horario">Ver días y horarios de las funciones</button>
-              </div>
+            </div>
 
 
         </section>
