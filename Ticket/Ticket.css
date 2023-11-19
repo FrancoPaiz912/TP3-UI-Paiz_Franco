@@ -1,0 +1,108 @@
+#Contenedor-Fechas{
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex: 1;
+    background-color: #292525;
+}
+
+#Contenedor-Imagen{
+    width: 25%;
+    aspect-ratio: 2/3;
+    margin: 2rem 2rem 2rem 2rem;
+}
+
+#Proximas-Funciones{
+    display: flex;
+    width: 50%;
+    margin: 2rem auto;
+    flex-direction: column;
+}
+
+#Anuncio-Fechas{
+    color: aliceblue;
+    width: 100%;
+    margin: 0 auto;
+    height: 5rem;
+    justify-content: center;
+}
+
+#Contenedor-MostrarFechas{
+    border: 2px solid rgb(117, 130, 142);
+    border-radius: 3rem;
+    width: 15%;
+    height: 3rem;
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#Contenedor-MostrarFechas:hover{
+    box-shadow: 1px  5px 10px whitesmoke;
+    transform: scale(1.05);
+    background-color: rgb(32, 15, 114);
+}
+
+.Mostrar-Fechas{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin:2rem;
+}
+
+#Datos-Funciones{
+    background-color: #4d4646;
+}
+
+/* #Fechas-Funciones{
+    margin: 0 auto;
+    width: 80%;
+    height: auto;
+    border: 2px solid rgb(132, 0, 255);
+}
+
+#Fecha{
+    border: 2px solid rgb(117, 130, 142);
+    width: 10%;
+    height: 5vh;
+    margin: 2%;
+} */
+
+/* #Lista-Funciones{
+    width: auto;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+} */
+
+#Contenedor-Funciones{
+    width: 80%;
+    align-items: center; 
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+table {
+    background-color: rgb(8, 5, 170);
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    color: aliceblue;
+  }
+  
+td, th {
+    border: 1px solid rgb(30, 30, 30);
+    text-align: left;
+    padding: 8px;
+}
+  
+tr:nth-child(even) {
+    background-color: #4d4646;
+}
+
+#Ancho-Columna{
+    width: 20%;
+}

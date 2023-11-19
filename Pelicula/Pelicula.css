@@ -1,0 +1,84 @@
+#Marco-Informacion{
+    margin-top: 5rem;
+    background-color: #131313;
+    max-width: 80%;
+    margin-left: 10vw;
+    display: flex;
+    padding: 4vh 4vw 4vw 4vh;
+  }
+  
+  #Contenedor-Poster{
+    height: 40rem;
+    width: 40rem;
+  }
+  
+  .Poster{
+    height: 100%;
+    width: 100%;
+    border: solid 2px;
+    border-color: goldenrod;
+    margin-bottom: none;
+  }
+  
+  #Titulo-Poster{
+    color: aliceblue;
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: none;
+    margin-bottom: 2rem;
+    font-weight: bold;
+  }
+
+  p{
+    color: aliceblue;
+  }
+
+  #InfoPelicula{
+    margin-left: 5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+  }
+  
+  #trailer{
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Proporción 16:9 (9 / 16 * 100) */
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  }
+  
+  iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .video-iframe {
+    pointer-events: none;
+  }
+  
+  #Descripcion{
+    width: 100%; 
+    height: 10vh;
+    color: aliceblue;
+    font-size: 1.2vw;
+    font-weight: bold;
+  } 
+  
+  #Contenedor-Boton{
+    margin-top: 7rem;
+  }
+  
+  #ConsultarFunciones-Dia-Horario{
+    background-color: #00bd6e;
+    margin-left: 0px;
+    margin-bottom: 2rem;
+    /* margin-top: 12.5vh; */
+    padding: none;
+    width: 100%;
+  }
+
