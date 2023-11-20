@@ -1,8 +1,10 @@
 import { CargarCartelera } from "../Services/GetFunciones.js";
 import { CargarPelicula } from "../Services/GetPeliculas.js";
+import { CapacidadDisponible } from "../Services/GetTickets.js";
+import { MapeoAnuncioHorario } from "./Mapeo/MapeoTicket.JS";
 import { MapeoFilas } from "./Mapeo/MapeoTicket.JS";
 import { MapeoColumnas } from "./Mapeo/MapeoTicket.JS";
-import { MapeoPoster,MapeoFechas } from "./Mapeo/MapeoTicket.JS";
+import { MapeoPoster,MapeoTiempo } from "./Mapeo/MapeoTicket.JS";
 
 window.onload = async function ()  {
     const url = new URLSearchParams(window.location.search);
@@ -19,7 +21,7 @@ window.onload = async function ()  {
 function MostrarFechas(funciones){
     let fechas=FiltrarFechas(funciones);
     let fechasMapeadas = fechas.map( fecha => {
-        return MapeoFechas(fecha);
+        return MapeoTiempo(fecha);
     }).join("");
     let MostrarFechas = document.querySelector(".Mostrar-Fechas");
     MostrarFechas.innerHTML = fechasMapeadas;
@@ -38,35 +40,69 @@ function FiltrarFechas(funcion){
     return Array.from(contenedor);
 }
 
-async function MostrarFunciones(fecha){
+// async function MostrarFunciones(fecha){
+//     const fechaLimpia = fecha.replace(/[\n\r\s]+/g, '').trim();    
+//     if(fechaLimpia.length == 5){
+//         let contenedor = document.getElementById("Contenedor-Funciones");
+//         let nombre = document.querySelector(".Poster").id;
+//         let funciones = await CargarCartelera(nombre,"",fechaLimpia);
+//         contenedor.innerHTML = MapeoColumnas();
+//         let tabla = document.getElementById("Datos-Funciones");
+//         let funcionesMapeadas = funciones.map( funcion => {
+//             let FormatoFecha = new Date(funcion.fecha);
+//             let dia = FormatoFecha.toLocaleDateString('es-AR', { weekday: 'long' });
+//             let fecha = FormatoFecha.toLocaleDateString('es-AR', {day: 'numeric', month: 'long' });
+//             return MapeoFilas(fecha,dia, funcion.horario, funcion.sala.nombre, funcion.sala.capacidad);
+//         }).join("");
+//         tabla.innerHTML = funcionesMapeadas;
+//     }
+// }
+
+async function MostrarHorarios(fecha){
     const fechaLimpia = fecha.replace(/[\n\r\s]+/g, '').trim();    
-    if(fechaLimpia.length == 5){
-        let contenedor = document.getElementById("Contenedor-Funciones");
+    if(fechaLimpia.length <= 5){
+        let conjunto = new Set();
+        let contenedor = document.querySelector(".Mostrar-Horarios");
         let nombre = document.querySelector(".Poster").id;
         let funciones = await CargarCartelera(nombre,"",fechaLimpia);
-        contenedor.innerHTML = MapeoColumnas();
-        let tabla = document.getElementById("Datos-Funciones");
         let funcionesMapeadas = funciones.map( funcion => {
-            let FormatoFecha = new Date(funcion.fecha);
-            let dia = FormatoFecha.toLocaleDateString('es-AR', { weekday: 'long' });
-            let fecha = FormatoFecha.toLocaleDateString('es-AR', {day: 'numeric', month: 'long' });
-            return MapeoFilas(fecha,dia, funcion.horario, funcion.sala.nombre, funcion.sala.capacidad);
+            if(!conjunto.has(funcion.horario)){
+                conjunto.add(funcion.horario);
+                return MapeoTiempo(funcion.horario);
+            }
         }).join("");
-        tabla.innerHTML = funcionesMapeadas;
-
+        contenedor.innerHTML = funcionesMapeadas;
+        contenedor.addEventListener("click", (e) => {
+            let elementoClicado = e.target;
+            FuncionesByHorario(funciones, elementoClicado.textContent);
+        });
     }
 }
 
+async function FuncionesByHorario(funciones, horario) {
+    const horarioLimpio = horario.replace(/[\n\r\s]+/g, '').trim(); 
+    let contenedor = document.getElementById("Contenedor-Funciones");
+    contenedor.innerHTML = MapeoColumnas();
+    let tabla = document.getElementById("Datos-Funciones");
+    let Horariosmapeados = await funciones.map( async funcion => {
+        if(funcion.horario == horarioLimpio){
+            const capacidad = await CapacidadDisponible(funcion.funcionId);
+            return await MapeoFilas(funcion.sala.nombre,capacidad.cantidad);
+        }        
+    }).join("");
+    tabla.innerHTML = await Horariosmapeados;
+    tabla.scrollIntoView({ behavior: "smooth" });
+}
 
 const EventoFunciones = document.querySelector(".Mostrar-Fechas");
 EventoFunciones.addEventListener( "click", (e) => {
-    e.preventDefault();
     let elementoClicado = e.target;
-    MostrarFunciones(elementoClicado.textContent);
-    let funcionesReferenciadas = document.getElementById("Datos-Funciones");
-    funcionesReferenciadas.scrollIntoView({ behavior: "smooth" });
+    let anuncio = document.querySelector(".Anuncio-Horario");
+    anuncio.innerHTML = MapeoAnuncioHorario();
+    //MostrarFunciones(elementoClicado.textContent);
+    MostrarHorarios(elementoClicado.textContent);
 });
 
 // function OrdenarFechas(contenedor){
-
+//Ordenar por fecha y horario
 // }

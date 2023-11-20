@@ -1,31 +1,23 @@
 #Contenedor-Fechas{
     width: 80%;
     height: auto;
-    margin: 0 auto;
+    margin: 2rem auto;
     display: flex;
     flex: 1;
     background-color: #292525;
 }
 
 #Contenedor-Imagen{
-    width: 25%;
+    width: 30%;
     aspect-ratio: 2/3;
     margin: 2rem 2rem 2rem 2rem;
 }
 
 #Proximas-Funciones{
     display: flex;
-    width: 50%;
+    width: 70%;
     margin: 2rem auto;
     flex-direction: column;
-}
-
-#Anuncio-Fechas{
-    color: aliceblue;
-    width: 100%;
-    margin: 0 auto;
-    height: 5rem;
-    justify-content: center;
 }
 
 #Contenedor-MostrarFechas{
@@ -42,14 +34,19 @@
 #Contenedor-MostrarFechas:hover{
     box-shadow: 1px  5px 10px whitesmoke;
     transform: scale(1.05);
-    background-color: rgb(32, 15, 114);
+    background-color: rgb(12, 12, 124);
 }
 
 .Mostrar-Fechas{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin:2rem;
+}
+.Mostrar-Horarios{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
 }
 
 #Datos-Funciones{

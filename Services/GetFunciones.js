@@ -14,6 +14,8 @@ export async function CargarCartelera(titulo, genero, fecha){
     }
 };
 
+
+
 export default 
 {
     CargarCartelera,
