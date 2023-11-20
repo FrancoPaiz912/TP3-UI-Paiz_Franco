@@ -1,6 +1,6 @@
 import { CargarCartelera } from "../Services/GetFunciones.js";
 import { CargarPelicula } from "../Services/GetPeliculas.js";
-import { CapacidadDisponible } from "../Services/GetTickets.js";
+import { CapacidadDisponible, ComprarTicket } from "../Services/GetTickets.js";
 import { MapeoAnuncioHorario } from "./Mapeo/MapeoTicket.JS";
 import { MapeoFilas } from "./Mapeo/MapeoTicket.JS";
 import { MapeoColumnas } from "./Mapeo/MapeoTicket.JS";
@@ -43,6 +43,8 @@ function FiltrarFechas(funcion){
 async function MostrarHorarios(fecha){
     const fechaLimpia = fecha.replace(/[\n\r\s]+/g, '').trim();    
     if(fechaLimpia.length <= 5){
+        let anuncio = document.querySelector(".Anuncio-Horario");
+        anuncio.innerHTML = MapeoAnuncioHorario();
         let conjunto = new Set();
         let contenedor = document.querySelector(".Mostrar-Horarios");
         let nombre = document.querySelector(".Poster").id;
@@ -70,7 +72,7 @@ async function FuncionesByHorario(funciones, horario) {
     let Horariosmapeados = await Promise.all(funciones.map(async funcion => {
         if(funcion.horario == horarioLimpio){
             const capacidad = await CapacidadDisponible(funcion.funcionId);
-            return MapeoFilas(funcion.sala.nombre,capacidad.cantidad);
+            return MapeoFilas(funcion.funcionId,funcion.sala.nombre,capacidad.cantidad);
         }        
     }));
     tabla.innerHTML = Horariosmapeados.join("");
@@ -78,16 +80,61 @@ async function FuncionesByHorario(funciones, horario) {
     }
 }
 
+async function ComprarEntradas(id,usuario,cantidad){
+    let capacidad = await CapacidadDisponible(id);
+    if(capacidad.cantidad<cantidad){
+        document.getElementById("cantidad-entradas").setCustomValidity('Se excede el límite de entradas disponibles');
+        document.querySelector(".formulario-modal").reportValidity();
+    }
+    else{
+        // ComprarTicket(id,usuario,cantidad)
+        alert(id);
+        alert(usuario);
+        alert(cantidad);
+    }
+}
+
 const EventoFunciones = document.querySelector(".Mostrar-Fechas");
 EventoFunciones.addEventListener( "click", (e) => {
     let elementoClicado = e.target;
-    let anuncio = document.querySelector(".Anuncio-Horario");
-    anuncio.innerHTML = MapeoAnuncioHorario();
     MostrarHorarios(elementoClicado.textContent);
 });
 
+const cantidad = document.getElementById("cantidad-entradas");
+cantidad.addEventListener( "change", () => {
+    const precio= document.getElementById("precio-entrada").value;
+    const precioTotal = document.getElementById("calcular-monto");    
+    if (precio * cantidad.value>0) {
+        precioTotal.value = precio * cantidad.value;
+    }
+    else{
+        precioTotal.value = 0;
+    }
+});
 
+const CompraTicket = document.getElementById("Compra-Ticket");
+CompraTicket.addEventListener("click", () => {
+    const usuario = document.getElementById("usuario").value;
+    const cantidad = document.getElementById("cantidad-entradas").value;
+    if(usuario.length == 0){
+        document.querySelector(".formulario-modal").reportValidity();
+    }
+        
+    else if(cantidad < 1){
+        document.getElementById("cantidad-entradas").setCustomValidity('La cantidad de entradas a comprar debe ser mayor a 0');
+        document.querySelector(".formulario-modal").reportValidity();
+    }
 
+    else if(cantidad.length <= 0){
+        document.getElementById("cantidad-entradas").setCustomValidity('Ingresa cuantas entradas desea comprar');
+        document.querySelector(".formulario-modal").reportValidity();
+    }
+    
+    else{
+        let id = document.querySelector(".Boton-Ticket").id;
+        ComprarEntradas(id,usuario,cantidad);
+    }
+});
 // function OrdenarFechas(contenedor){
 //Ordenar por fecha y horario
 // }

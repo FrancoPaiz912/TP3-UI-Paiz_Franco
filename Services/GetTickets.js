@@ -13,3 +13,23 @@ export async function CapacidadDisponible(id){
         console.log(error);
     }
 };
+
+export async function ComprarTicket(id,usuario,cantidad){
+    const config = {
+        method: 'GET',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+            "cantidad":cantidad,
+            "usuario":usuario
+        }),
+    }
+    ;
+    try{
+        const response = await fetch (`https://localhost:7030/api/v1/Funcion/${id}/tickets`, config);
+        return await response.json(); 
+    }catch(error){
+        console.log(error);
+    }
+};

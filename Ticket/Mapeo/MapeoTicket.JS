@@ -28,10 +28,10 @@ export function MapeoColumnas(){
           </table>`
 }
 
-export function MapeoFilas(sala,entradas){
+export function MapeoFilas(id,sala,entradas){
     return `<tr>
             <td class="Ancho-Columna">${sala}</td>
             <td class="Ancho-Columna">${entradas}</td>
-            <td class="Ancho-Columna"><button>Comprar Tickets</button></td>
+            <td id="${id}" type="button" class="btn btn-primary Ancho-Columna Boton-Ticket" data-bs-toggle="modal" data-bs-target="#exampleModal">Comprar Tickets</td>
             </tr>`
 }
