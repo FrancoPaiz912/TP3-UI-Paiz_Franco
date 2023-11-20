@@ -40,24 +40,6 @@ function FiltrarFechas(funcion){
     return Array.from(contenedor);
 }
 
-// async function MostrarFunciones(fecha){
-//     const fechaLimpia = fecha.replace(/[\n\r\s]+/g, '').trim();    
-//     if(fechaLimpia.length == 5){
-//         let contenedor = document.getElementById("Contenedor-Funciones");
-//         let nombre = document.querySelector(".Poster").id;
-//         let funciones = await CargarCartelera(nombre,"",fechaLimpia);
-//         contenedor.innerHTML = MapeoColumnas();
-//         let tabla = document.getElementById("Datos-Funciones");
-//         let funcionesMapeadas = funciones.map( funcion => {
-//             let FormatoFecha = new Date(funcion.fecha);
-//             let dia = FormatoFecha.toLocaleDateString('es-AR', { weekday: 'long' });
-//             let fecha = FormatoFecha.toLocaleDateString('es-AR', {day: 'numeric', month: 'long' });
-//             return MapeoFilas(fecha,dia, funcion.horario, funcion.sala.nombre, funcion.sala.capacidad);
-//         }).join("");
-//         tabla.innerHTML = funcionesMapeadas;
-//     }
-// }
-
 async function MostrarHorarios(fecha){
     const fechaLimpia = fecha.replace(/[\n\r\s]+/g, '').trim();    
     if(fechaLimpia.length <= 5){
@@ -81,17 +63,19 @@ async function MostrarHorarios(fecha){
 
 async function FuncionesByHorario(funciones, horario) {
     const horarioLimpio = horario.replace(/[\n\r\s]+/g, '').trim(); 
+    if(horarioLimpio.length <= 5){
     let contenedor = document.getElementById("Contenedor-Funciones");
     contenedor.innerHTML = MapeoColumnas();
     let tabla = document.getElementById("Datos-Funciones");
-    let Horariosmapeados = await funciones.map( async funcion => {
+    let Horariosmapeados = await Promise.all(funciones.map(async funcion => {
         if(funcion.horario == horarioLimpio){
             const capacidad = await CapacidadDisponible(funcion.funcionId);
-            return await MapeoFilas(funcion.sala.nombre,capacidad.cantidad);
+            return MapeoFilas(funcion.sala.nombre,capacidad.cantidad);
         }        
-    }).join("");
-    tabla.innerHTML = await Horariosmapeados;
+    }));
+    tabla.innerHTML = Horariosmapeados.join("");
     tabla.scrollIntoView({ behavior: "smooth" });
+    }
 }
 
 const EventoFunciones = document.querySelector(".Mostrar-Fechas");
@@ -99,9 +83,10 @@ EventoFunciones.addEventListener( "click", (e) => {
     let elementoClicado = e.target;
     let anuncio = document.querySelector(".Anuncio-Horario");
     anuncio.innerHTML = MapeoAnuncioHorario();
-    //MostrarFunciones(elementoClicado.textContent);
     MostrarHorarios(elementoClicado.textContent);
 });
+
+
 
 // function OrdenarFechas(contenedor){
 //Ordenar por fecha y horario

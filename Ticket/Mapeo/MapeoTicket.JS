@@ -30,8 +30,8 @@ export function MapeoColumnas(){
 
 export function MapeoFilas(sala,entradas){
     return `<tr>
-            <td id="Ancho-Columna">${sala}</td>
-            <td id="Ancho-Columna">${entradas}</td>
-            <td id="Ancho-Columna"><button>Comprar Tickets</button></td>
+            <td class="Ancho-Columna">${sala}</td>
+            <td class="Ancho-Columna">${entradas}</td>
+            <td class="Ancho-Columna"><button>Comprar Tickets</button></td>
             </tr>`
 }
