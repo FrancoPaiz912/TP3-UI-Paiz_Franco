@@ -1,7 +1,7 @@
 import { MapeoTicket } from "./mapeo/MapeoTickets.js";
 
 window.onload = async function() {
-const ticketParam = new URLSearchParams(window.location.search).get('Ticket');
+const ticketParam = decodeURIComponent(new URLSearchParams(window.location.search).get('Ticket'));
 const ticket = JSON.parse(ticketParam);
 const MostrarTicket= document.querySelector(".Contenedor-Tickets");
 const arreglo = [];

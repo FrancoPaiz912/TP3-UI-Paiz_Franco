@@ -34,10 +34,8 @@ async function BusquedaFiltrada (){
 const boton = document.getElementById("BotonBusqueda");    
 boton.addEventListener("click", (e) => {
     e.preventDefault();
-    if(InformacionPelicula.children.length > 0){
-        InformacionPelicula.removeChild(InformacionPelicula.children[0]);
-    };
     BusquedaFiltrada();
+    document.getElementById("Desplegable-Pelicula").innerHTML = "";
     document.querySelector(".Funciones").scrollIntoView({ behavior: "smooth" });
 });
 
@@ -49,7 +47,7 @@ seccion.addEventListener("click", (e) => {
     PeliculaReferencia.scrollIntoView({ behavior: "smooth" });
 });
 
-document.querySelector(".EliminarFiltros") //Solucionar
+document.querySelector(".EliminarFiltros") 
 .addEventListener( "click", (e) => {
     e.preventDefault();
     CarteleraCompleta();
@@ -57,8 +55,7 @@ document.querySelector(".EliminarFiltros") //Solucionar
     document.getElementById("Titulo").value = "";
     document.getElementById("Genero").value = "";
     document.getElementById("Fecha").value = "";
-    document.querySelector(".Desplegable-Pelicula").innerHTML = null;
-
+    document.getElementById("Desplegable-Pelicula").innerHTML = "";
 });
 
 function EvitarRepeticion(funciones){
@@ -83,6 +80,5 @@ function FuncionesAMapear(funciones, contenedor){
 }
 
 function MostrarFunciones(funcionesMapeadas){
-    seccion.removeChild(seccion.firstChild);
     seccion.innerHTML = funcionesMapeadas;
 }; 

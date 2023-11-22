@@ -89,7 +89,7 @@ async function ComprarEntradas(id,usuario,cantidad){
     else{
         let Ticket = await ComprarTicket(id,usuario,cantidad);
         const ticketJSON = JSON.stringify(Ticket);
-        window.open(`./Impresion/ImpresionTicket.html?Ticket=${(ticketJSON)}`);
+        window.location.href = (`./Impresion/ImpresionTicket.html?Ticket=${encodeURIComponent(ticketJSON)}`);
     }
 }
 

@@ -1,6 +1,5 @@
 body{
   background-color: black;
-  overflow-x: hidden;
 }
 
 header{
@@ -95,18 +94,25 @@ li a:hover {
   background-color: #111;
 }
 
-.presentacion{
+/* .presentacion{
   position: relative;
-}
+} */
 
-.InfoPelicula{
+/* .InfoPelicula{
   position: relative;
   top: 4vh;
   display: inline-block;
+} */
+
+section{
+  height: auto !important;
 }
 
 .Funciones{
-  margin: 5rem 10rem 0 10rem;
+  padding: 2rem 10rem 0 10rem;
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
 }
 
 .card:hover{
@@ -199,8 +205,10 @@ h2{
   margin-top: 20vh;
 }
 
-/* footer{
+footer{
   position: static;
   background-color: #282727;
-} */
+  width: 100%;
+  height: 20vh;
+}
 

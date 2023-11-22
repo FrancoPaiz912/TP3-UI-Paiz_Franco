@@ -97,7 +97,7 @@ tr:nth-child(even) {
 
 .Input-Modal{
     border-radius: 10px;
-    width: 50%;
+    width: 50% !important;
 }
 
 .modal-header{
@@ -123,6 +123,10 @@ tr:nth-child(even) {
 
 .btn-close{
     background-color: rgb(214, 24, 24);
+}
+
+.modal-body{
+    width: 100%;
 }
 
 .Ticket{
