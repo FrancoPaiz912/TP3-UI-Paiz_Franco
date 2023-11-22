@@ -51,11 +51,11 @@ document.querySelector(".EliminarFiltros")
 .addEventListener( "click", (e) => {
     e.preventDefault();
     CarteleraCompleta();
+    document.getElementById("Desplegable-Pelicula").innerHTML = "";
     document.querySelector(".Funciones").scrollIntoView({ behavior: "smooth" });
     document.getElementById("Titulo").value = "";
     document.getElementById("Genero").value = "";
     document.getElementById("Fecha").value = "";
-    document.getElementById("Desplegable-Pelicula").innerHTML = "";
 });
 
 function EvitarRepeticion(funciones){
