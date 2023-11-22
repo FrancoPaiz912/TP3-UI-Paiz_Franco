@@ -87,10 +87,9 @@ async function ComprarEntradas(id,usuario,cantidad){
         document.querySelector(".formulario-modal").reportValidity();
     }
     else{
-        // ComprarTicket(id,usuario,cantidad)
-        alert(id);
-        alert(usuario);
-        alert(cantidad);
+        let Ticket = await ComprarTicket(id,usuario,cantidad);
+        const ticketJSON = JSON.stringify(Ticket);
+        window.open(`./Impresion/ImpresionTicket.html?Ticket=${(ticketJSON)}`);
     }
 }
 
@@ -135,6 +134,11 @@ CompraTicket.addEventListener("click", () => {
         ComprarEntradas(id,usuario,cantidad);
     }
 });
+
 // function OrdenarFechas(contenedor){
-//Ordenar por fecha y horario
+
+// }
+
+// function OrdenarHora(){
+
 // }

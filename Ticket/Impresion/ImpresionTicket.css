@@ -1,0 +1,54 @@
+.Ticket{
+    width: 90%;
+    height: auto;
+    margin: 2rem auto;
+    clip-path: polygon(
+        0 10%, 5% 0, 95% 0, 100% 10%, 
+        100% 90%, 95% 100%, 5% 100%, 0 90%
+    );
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    background-image: url(../../img/Patitas-Huellas-Gato-1.png);
+    background-size: cover;
+    padding: 2% 0 2% 0;
+}
+
+.Campo-Ticket{
+    margin-left: 2rem;
+    color:#67ebfa;
+    width: 90%;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 25px rgb(0, 0, 0), 0 0 5px rgb(0, 0, 0);
+}
+
+.Contenedor-Tickets{
+    width: 50%;
+    background-color: #131313;
+    margin: 2rem auto;
+    padding: 1rem 0 1rem 0;
+}
+
+.Agradecimiento{
+    display: flex;
+    width: 60%;
+    height: 80%;
+    margin: 2rem auto;
+}
+
+.Contenedor-Gato{
+    height: 80%;
+}
+
+.Imagen-Gato{
+    margin-left: 5rem;
+}
+
+.Contenedor-Dialogo{
+    height: 20%;
+}
+
+.Imagen-Dialogo{
+    height: 30rem;
+    margin-left: -5rem;    
+}
+

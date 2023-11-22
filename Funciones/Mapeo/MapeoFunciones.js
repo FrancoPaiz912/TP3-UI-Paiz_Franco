@@ -15,8 +15,15 @@ export function Mapeofunciones(cartelera){
   return funcionesMapeadas;
 }
 
-export function MensajeAlternativo(){
-  return `<h2>No existen funciones coincidentes con los filtros establecidos<h2>` //Dar Estilo
+export function MensajeAlternativo(){//Crear clases propias y dejar de depender del css de impresion tickets
+  return `<div class="Mensaje">
+          <div class="Contenedor-Gato-Triste">
+          <img class="Imagen-Gato-Triste" src="../../img/Gato-Triste.png" alt="">
+          </div>
+          <div class="Contenedor-Dialogo-Negativo">
+          <img class="Imagen-Dialogo-Negativo" src="../../img/Cuadro-Dialogo-NotFound.png" alt="">
+          </div>
+          </div>` 
 };
 
 export default {

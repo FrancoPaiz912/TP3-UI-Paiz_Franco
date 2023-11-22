@@ -16,7 +16,7 @@ export async function CapacidadDisponible(id){
 
 export async function ComprarTicket(id,usuario,cantidad){
     const config = {
-        method: 'GET',
+        method: 'POST',
         headers:{
             'Content-Type':'application/json'
         },

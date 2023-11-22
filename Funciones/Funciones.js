@@ -4,12 +4,16 @@ import { InformacionPelicula, seccion } from "../html dinamicos/llamados.js";
 import { CargarCartelera } from "../Services/GetFunciones.js";
 
 window.onload = async function() {
+     CarteleraCompleta();
+};
+
+async function CarteleraCompleta(){//Para que al eliminar filtros, no se recargue la página y pueda centrarce en las peliculas
     let funciones = await CargarCartelera("","",""); 
     let indices = EvitarRepeticion(funciones);
     let cartelera = FuncionesAMapear(funciones, indices);
     let funcionesMapeadas = Mapeofunciones(cartelera);
     MostrarFunciones(funcionesMapeadas); 
-};
+}
 
 async function BusquedaFiltrada (){
     let funcionesMapeadas;
@@ -17,7 +21,7 @@ async function BusquedaFiltrada (){
     let genero = document.getElementById("Genero").value; 
     let fecha = document.getElementById("Fecha").value;
     if (genero != "") genero = parseInt(genero);
-    let result = await CargarCartelera(titulo, genero, fecha)
+    let result = await CargarCartelera(titulo, genero, fecha);
     if (result.length > 0){
     let indices = EvitarRepeticion(result);
     let cartelera = FuncionesAMapear(result, indices);
@@ -34,6 +38,7 @@ boton.addEventListener("click", (e) => {
         InformacionPelicula.removeChild(InformacionPelicula.children[0]);
     };
     BusquedaFiltrada();
+    document.querySelector(".Funciones").scrollIntoView({ behavior: "smooth" });
 });
 
 seccion.addEventListener("click", (e) => {
@@ -42,6 +47,18 @@ seccion.addEventListener("click", (e) => {
     BusquedaPelicula(elementoClicado.id);
     let PeliculaReferencia = document.getElementById("Desplegable-Pelicula");
     PeliculaReferencia.scrollIntoView({ behavior: "smooth" });
+});
+
+document.querySelector(".EliminarFiltros") //Solucionar
+.addEventListener( "click", (e) => {
+    e.preventDefault();
+    CarteleraCompleta();
+    document.querySelector(".Funciones").scrollIntoView({ behavior: "smooth" });
+    document.getElementById("Titulo").value = "";
+    document.getElementById("Genero").value = "";
+    document.getElementById("Fecha").value = "";
+    document.querySelector(".Desplegable-Pelicula").innerHTML = null;
+
 });
 
 function EvitarRepeticion(funciones){
