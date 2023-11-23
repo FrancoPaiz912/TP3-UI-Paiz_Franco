@@ -20,7 +20,8 @@ window.onload = async function ()  {
 
 function MostrarFechas(funciones){
     let fechas=FiltrarFechas(funciones);
-    let fechasMapeadas = fechas.map( fecha => {
+    let fechasOrdenadas = OrdenarFechas(fechas);
+    let fechasMapeadas = fechasOrdenadas.map( fecha => {
         return MapeoTiempo(fecha);
     }).join("");
     let MostrarFechas = document.querySelector(".Mostrar-Fechas");
@@ -48,12 +49,11 @@ async function MostrarHorarios(fecha){
         let conjunto = new Set();
         let contenedor = document.querySelector(".Mostrar-Horarios");
         let nombre = document.querySelector(".Poster").id;
-        let funciones = await CargarCartelera(nombre,"",fechaLimpia);
-        let funcionesMapeadas = funciones.map( funcion => {
-            if(!conjunto.has(funcion.horario)){
-                conjunto.add(funcion.horario);
-                return MapeoTiempo(funcion.horario);
-            }
+        let funciones = await CargarCartelera(nombre,"",fechaLimpia); //Para las fechas hago un get de peliculabyid es por eso que le puedo pasar el array de funciones
+        let horariosSinRepeticion = FiltrarHorarios(funciones);
+        let horarioOrdenado = OrdenarHora(horariosSinRepeticion);
+        let funcionesMapeadas = horarioOrdenado.map( funcion => {
+            return MapeoTiempo(funcion);
         }).join("");
         contenedor.innerHTML = funcionesMapeadas;
         contenedor.addEventListener("click", (e) => {
@@ -61,6 +61,16 @@ async function MostrarHorarios(fecha){
             FuncionesByHorario(funciones, elementoClicado.textContent);
         });
     }
+}
+
+function FiltrarHorarios(funcion){
+    let contenedor = new Set();
+    funcion.forEach(funcion => {
+        if(!contenedor.has(funcion.horario)){
+            contenedor.add(funcion.horario);
+        }  
+    });
+    return Array.from(contenedor);
 }
 
 async function FuncionesByHorario(funciones, horario) {
@@ -135,10 +145,58 @@ CompraTicket.addEventListener("click", () => {
     }
 });
 
-// function OrdenarFechas(contenedor){
+function OrdenarFechas(fechas){ //Y si le enviamos directamente el formato como se recibe desde el get?
+    let fechasOrdenadas = [];
+    fechasOrdenadas.push(fechas[0]);
+    let fechaActual = new Date();
+    let añoActual = fechaActual.getFullYear();
+    for (let i = 1; i < fechas.length; i++) {
+        let partesFecha = fechas[i].split('/'); 
+        let fecha1 = new Date(añoActual, partesFecha[1] - 1, partesFecha[0]);
+        for (let j = 0; j <fechasOrdenadas.length;j++) {
+            let partesFecha = fechasOrdenadas[j].split('/'); 
+            let fecha2 = new Date(añoActual, partesFecha[1] - 1, partesFecha[0]);
+            if (fecha1.getMonth() < fecha2.getMonth() || (fecha1.getDate() <= fecha2.getDate() && fecha1.getMonth() == fecha2.getMonth())){
+                let fechaArgentina = fecha1.toLocaleDateString('es-AR');
+                const fechayMes = fechaArgentina.substring(0, fechaArgentina.lastIndexOf('/'));
+                fechasOrdenadas.splice(j, 0, fechayMes);
+                j = fechasOrdenadas.length;
+            }
+            if (j == fechasOrdenadas.length - 1){
+                let fechaArgentina = fecha1.toLocaleDateString('es-AR');
+                const fechayMes = fechaArgentina.substring(0, fechaArgentina.lastIndexOf('/'));
+                fechasOrdenadas.splice(j+1, 0, fechayMes);
+                j = fechasOrdenadas.length;
+            }
+        }
+    }
+    return fechasOrdenadas;
+}
 
-// }
-
-// function OrdenarHora(){
-
-// }
+function OrdenarHora(Horas){
+    let horasOrdenadas = [];
+    horasOrdenadas.push(Horas[0]);
+    let horario1 = new Date();
+    let horario2 = new Date();
+    for (let i = 1; i < Horas.length; i++) {
+        let partesHora1 = Horas[i].split(':');
+        horario1.setHours(parseInt(partesHora1[0])); 
+        horario1.setMinutes(parseInt(partesHora1[1])); 
+        for (let j = 0; j <horasOrdenadas.length;j++) {
+            let partesHora2 = horasOrdenadas[j].split(':');
+            horario2.setHours(parseInt(partesHora2[0])); 
+            horario2.setMinutes(parseInt(partesHora2[1])); 
+            if (horario1.getHours() < horario2.getHours()){
+                let minutos = (horario1.getMinutes() < 10 ? '0' : '') + horario1.getMinutes();
+                horasOrdenadas.splice(j, 0, horario1.getHours() +':'+ minutos);
+                j = horasOrdenadas.length;
+            }
+            if (j == horasOrdenadas.length - 1){
+                let minutos = (horario1.getMinutes() < 10 ? '0' : '') + horario1.getMinutes();
+                horasOrdenadas.splice(j+1, 0, horario1.getHours() +':'+ minutos);
+                j = horasOrdenadas.length;
+            }
+        }
+    }
+    return horasOrdenadas;
+}
