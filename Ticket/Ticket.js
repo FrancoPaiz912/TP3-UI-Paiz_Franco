@@ -1,6 +1,7 @@
 import { CargarCartelera } from "../Services/GetFunciones.js";
 import { CargarPelicula } from "../Services/GetPeliculas.js";
 import { CapacidadDisponible, ComprarTicket } from "../Services/GetTickets.js";
+import { MapeoAuxiliar } from "./Mapeo/MapeoTicket.JS";
 import { MapeoAnuncioHorario } from "./Mapeo/MapeoTicket.JS";
 import { MapeoFilas } from "./Mapeo/MapeoTicket.JS";
 import { MapeoColumnas } from "./Mapeo/MapeoTicket.JS";
@@ -46,7 +47,6 @@ async function MostrarHorarios(fecha){
     if(fechaLimpia.length <= 5){
         let anuncio = document.querySelector(".Anuncio-Horario");
         anuncio.innerHTML = MapeoAnuncioHorario();
-        let conjunto = new Set();
         let contenedor = document.querySelector(".Mostrar-Horarios");
         let nombre = document.querySelector(".Poster").id;
         let funciones = await CargarCartelera(nombre,"",fechaLimpia); //Para las fechas hago un get de peliculabyid es por eso que le puedo pasar el array de funciones
@@ -86,6 +86,11 @@ async function FuncionesByHorario(funciones, horario) {
         }        
     }));
     tabla.innerHTML = Horariosmapeados.join("");
+    tabla.addEventListener("click", (e) =>{
+        let id= e.target.id;
+        let divOculto = document.querySelector(".contenedor-id");
+        divOculto.innerHTML = MapeoAuxiliar(id);
+    });
     tabla.scrollIntoView({ behavior: "smooth" });
     }
 }
@@ -121,6 +126,7 @@ cantidad.addEventListener( "change", () => {
     }
 });
 
+
 const CompraTicket = document.getElementById("Compra-Ticket");
 CompraTicket.addEventListener("click", () => {
     const usuario = document.getElementById("usuario").value;
@@ -140,7 +146,7 @@ CompraTicket.addEventListener("click", () => {
     }
     
     else{
-        let id = document.querySelector(".Boton-Ticket").id;
+        let id = document.querySelector(".id-oculta").id;
         ComprarEntradas(id,usuario,cantidad);
     }
 });

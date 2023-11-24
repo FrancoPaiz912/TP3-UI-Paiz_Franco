@@ -35,3 +35,8 @@ export function MapeoFilas(id,sala,entradas){
             <td id="${id}" type="button" class="btn btn-primary Ancho-Columna Boton-Ticket" data-bs-toggle="modal" data-bs-target="#exampleModal">Comprar Tickets</td>
             </tr>`
 }
+
+export function MapeoAuxiliar(id){
+    return `<div id=${id} class="id-oculta"> 
+            </div>`
+}

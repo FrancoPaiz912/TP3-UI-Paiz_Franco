@@ -149,3 +149,7 @@ tr:nth-child(even) {
     width: 90%;
     margin: 0 auto;
 }
+
+.id-oculta{
+    display: none;
+}
