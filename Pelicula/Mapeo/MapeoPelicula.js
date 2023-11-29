@@ -1,4 +1,4 @@
-export function MapeadorInformacion(titulo,poster,trailer,genero,descripcion){
+export function mapeadorInformacion(titulo,poster,trailer,genero,descripcion){
     return `<div id="Marco-Informacion"> 
       <div id="Contenedor-Poster">
         <img class="Poster" src=${poster} alt="Poster de ${titulo}">

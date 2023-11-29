@@ -1,35 +1,35 @@
-import { CargarCartelera } from "../Services/GetFunciones.js";
-import { CargarPelicula } from "../Services/GetPeliculas.js";
-import { CapacidadDisponible, ComprarTicket } from "../Services/GetTickets.js";
-import { MapeoAuxiliar } from "./Mapeo/MapeoTicket.JS";
-import { MapeoAnuncioHorario } from "./Mapeo/MapeoTicket.JS";
-import { MapeoFilas } from "./Mapeo/MapeoTicket.JS";
-import { MapeoColumnas } from "./Mapeo/MapeoTicket.JS";
-import { MapeoPoster,MapeoTiempo } from "./Mapeo/MapeoTicket.JS";
+import { cargarCartelera } from "../Services/GetFunciones.js";
+import { cargarPelicula } from "../Services/GetPeliculas.js";
+import { capacidadDisponible,comprarTicket } from "../Services/GetTickets.js";
+import { mapeoAuxiliar } from "./Mapeo/MapeoTicket.JS";
+import { mapeoAnuncioHorario } from "./Mapeo/MapeoTicket.JS";
+import { mapeoFilas } from "./Mapeo/MapeoTicket.JS";
+import { mapeoColumnas } from "./Mapeo/MapeoTicket.JS";
+import { mapeoPoster,mapeoTiempo } from "./Mapeo/MapeoTicket.JS";
 
 window.onload = async function ()  {
     const url = new URLSearchParams(window.location.search);
     const id = url.get('Pelicula');
-    const Pelicula = await CargarPelicula(id);
-    let Poster = await MapeoPoster(Pelicula.poster,Pelicula.titulo);
-    let Contenedorposter = document.getElementById("Contenedor-Imagen");
-    Contenedorposter.innerHTML = Poster;
-    MostrarFechas(Pelicula.funciones);
-    let PeliculaReferencia = document.getElementById("Contenedor-Fechas");
-    PeliculaReferencia.scrollIntoView({ behavior: "smooth" });
+    const pelicula = await cargarPelicula(id);
+    let poster = await mapeoPoster(pelicula.poster,pelicula.titulo);
+    let contenedorposter = document.getElementById("contenedor-Imagen");
+    contenedorposter.innerHTML = poster;
+    mostrarFechas(pelicula.funciones);
+    let peliculaReferencia = document.getElementById("Contenedor-Fechas");
+    peliculaReferencia.scrollIntoView({ behavior: "smooth" });
 };
 
-function MostrarFechas(funciones){
-    let fechas=FiltrarFechas(funciones);
-    let fechasOrdenadas = OrdenarFechas(fechas);
+function mostrarFechas(funciones){
+    let fechas=filtrarFechas(funciones);
+    let fechasOrdenadas = ordenarFechas(fechas);
     let fechasMapeadas = fechasOrdenadas.map( fecha => {
-        return MapeoTiempo(fecha);
+        return mapeoTiempo(fecha);
     }).join("");
-    let MostrarFechas = document.querySelector(".Mostrar-Fechas");
-    MostrarFechas.innerHTML = fechasMapeadas;
+    let mostrarFechas = document.querySelector(".Mostrar-Fechas");
+    mostrarFechas.innerHTML = fechasMapeadas;
 }
 
-function FiltrarFechas(funcion){
+function filtrarFechas(funcion){
     let contenedor = new Set();
     funcion.forEach(funcion => {
         let fecha = new Date(funcion.fecha);
@@ -42,28 +42,28 @@ function FiltrarFechas(funcion){
     return Array.from(contenedor);
 }
 
-async function MostrarHorarios(fecha){
+async function mostrarHorarios(fecha){
     const fechaLimpia = fecha.replace(/[\n\r\s]+/g, '').trim();    
     if(fechaLimpia.length <= 5){
         let anuncio = document.querySelector(".Anuncio-Horario");
-        anuncio.innerHTML = MapeoAnuncioHorario();
+        anuncio.innerHTML = mapeoAnuncioHorario();
         let contenedor = document.querySelector(".Mostrar-Horarios");
         let nombre = document.querySelector(".Poster").id;
-        let funciones = await CargarCartelera(nombre,"",fechaLimpia); //Para las fechas hago un get de peliculabyid es por eso que le puedo pasar el array de funciones
-        let horariosSinRepeticion = FiltrarHorarios(funciones);
-        let horarioOrdenado = OrdenarHora(horariosSinRepeticion);
+        let funciones = await cargarCartelera(nombre,"",fechaLimpia); //Para las fechas hago un get de peliculabyid es por eso que le puedo pasar el array de funciones
+        let horariosSinRepeticion = filtrarHorarios(funciones);
+        let horarioOrdenado = ordenarHora(horariosSinRepeticion);
         let funcionesMapeadas = horarioOrdenado.map( funcion => {
-            return MapeoTiempo(funcion);
+            return mapeoTiempo(funcion);
         }).join("");
         contenedor.innerHTML = funcionesMapeadas;
         contenedor.addEventListener("click", (e) => {
             let elementoClicado = e.target;
-            FuncionesByHorario(funciones, elementoClicado.textContent);
+            funcionesByHorario(funciones, elementoClicado.textContent);
         });
     }
 }
 
-function FiltrarHorarios(funcion){
+function filtrarHorarios(funcion){
     let contenedor = new Set();
     funcion.forEach(funcion => {
         if(!contenedor.has(funcion.horario)){
@@ -73,45 +73,45 @@ function FiltrarHorarios(funcion){
     return Array.from(contenedor);
 }
 
-async function FuncionesByHorario(funciones, horario) {
+async function funcionesByHorario(funciones, horario) {
     const horarioLimpio = horario.replace(/[\n\r\s]+/g, '').trim(); 
     if(horarioLimpio.length <= 5){
     let contenedor = document.getElementById("Contenedor-Funciones");
-    contenedor.innerHTML = MapeoColumnas();
+    contenedor.innerHTML = mapeoColumnas();
     let tabla = document.getElementById("Datos-Funciones");
-    let Horariosmapeados = await Promise.all(funciones.map(async funcion => {
+    let horariosmapeados = await Promise.all(funciones.map(async funcion => {
         if(funcion.horario == horarioLimpio){
-            const capacidad = await CapacidadDisponible(funcion.funcionId);
-            return MapeoFilas(funcion.funcionId,funcion.sala.nombre,capacidad.cantidad);
+            const capacidad = await capacidadDisponible(funcion.funcionId);
+            return mapeoFilas(funcion.funcionId,funcion.sala.nombre,capacidad.cantidad);
         }        
     }));
-    tabla.innerHTML = Horariosmapeados.join("");
+    tabla.innerHTML = horariosmapeados.join("");
     tabla.addEventListener("click", (e) =>{
         let id= e.target.id;
         let divOculto = document.querySelector(".contenedor-id");
-        divOculto.innerHTML = MapeoAuxiliar(id);
+        divOculto.innerHTML = mapeoAuxiliar(id);
     });
     tabla.scrollIntoView({ behavior: "smooth" });
     }
 }
 
-async function ComprarEntradas(id,usuario,cantidad){
-    let capacidad = await CapacidadDisponible(id);
+async function comprarEntradas(id,usuario,cantidad){
+    let capacidad = await capacidadDisponible(id);
     if(capacidad.cantidad<cantidad){
         document.getElementById("cantidad-entradas").setCustomValidity('Se excede el límite de entradas disponibles');
         document.querySelector(".formulario-modal").reportValidity();
     }
     else{
-        let Ticket = await ComprarTicket(id,usuario,cantidad);
-        const ticketJSON = JSON.stringify(Ticket);
+        let ticket = await comprarTicket(id,usuario,cantidad);
+        const ticketJSON = JSON.stringify(ticket);
         window.location.href = (`./Impresion/ImpresionTicket.html?Ticket=${encodeURIComponent(ticketJSON)}`);
     }
 }
 
-const EventoFunciones = document.querySelector(".Mostrar-Fechas");
-EventoFunciones.addEventListener( "click", (e) => {
+const eventoFunciones = document.querySelector(".Mostrar-Fechas");
+eventoFunciones.addEventListener( "click", (e) => {
     let elementoClicado = e.target;
-    MostrarHorarios(elementoClicado.textContent);
+    mostrarHorarios(elementoClicado.textContent);
 });
 
 const cantidad = document.getElementById("cantidad-entradas");
@@ -127,8 +127,8 @@ cantidad.addEventListener( "change", () => {
 });
 
 
-const CompraTicket = document.getElementById("Compra-Ticket");
-CompraTicket.addEventListener("click", () => {
+const compraTicket = document.getElementById("Compra-Ticket");
+compraTicket.addEventListener("click", () => {
     const usuario = document.getElementById("usuario").value;
     const cantidad = document.getElementById("cantidad-entradas").value;
     if(usuario.length == 0){
@@ -147,11 +147,11 @@ CompraTicket.addEventListener("click", () => {
     
     else{
         let id = document.querySelector(".id-oculta").id;
-        ComprarEntradas(id,usuario,cantidad);
+        comprarEntradas(id,usuario,cantidad);
     }
 });
 
-function OrdenarFechas(fechas){ //Y si le enviamos directamente el formato como se recibe desde el get?
+function ordenarFechas(fechas){ //Y si le enviamos directamente el formato como se recibe desde el get?
     let fechasOrdenadas = [];
     fechasOrdenadas.push(fechas[0]);
     let fechaActual = new Date();
@@ -179,7 +179,7 @@ function OrdenarFechas(fechas){ //Y si le enviamos directamente el formato como 
     return fechasOrdenadas;
 }
 
-function OrdenarHora(Horas){
+function ordenarHora(Horas){
     let horasOrdenadas = [];
     horasOrdenadas.push(Horas[0]);
     let horario1 = new Date();

@@ -1,4 +1,4 @@
-export function MapeoTicket(usuario,ticketId,titulo,genero,sala,fecha,hora){
+export function mapeoTicket(usuario,ticketId,titulo,genero,sala,fecha,hora){
     return `<div class="Ticket">
             <div class="Campo-Ticket"><h3>Usuario: ${usuario}</h3></div>
             <div class="Campo-Ticket"><h3>TicketId: ${ticketId}</h3></div>

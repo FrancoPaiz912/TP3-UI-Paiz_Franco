@@ -1,56 +1,56 @@
-import { Mapeofunciones, MensajeAlternativo } from "./Mapeo/MapeoFunciones.js";
-import { BusquedaPelicula } from "../Pelicula/Pelicula.js";
-import { InformacionPelicula, seccion } from "../html dinamicos/llamados.js";
-import { CargarCartelera } from "../Services/GetFunciones.js";
+import { mapeofunciones, mensajeAlternativo } from "./Mapeo/MapeoFunciones.js";
+import { busquedaPelicula } from "../Pelicula/Pelicula.js";
+import { cargarCartelera } from "../Services/GetFunciones.js";
 
 window.onload = async function() {
-     CarteleraCompleta();
+     carteleraCompleta();
 };
 
-async function CarteleraCompleta(){//Para que al eliminar filtros, no se recargue la página y pueda centrarce en las peliculas
-    let funciones = await CargarCartelera("","",""); 
-    let indices = EvitarRepeticion(funciones);
-    let cartelera = FuncionesAMapear(funciones, indices);
-    let funcionesMapeadas = Mapeofunciones(cartelera);
-    MostrarFunciones(funcionesMapeadas); 
+async function carteleraCompleta(){//Para que al eliminar filtros, no se recargue la página y pueda centrarce en las peliculas
+    let funciones = await cargarCartelera("","",""); 
+    let indices = evitarRepeticion(funciones);
+    let cartelera = funcionesAMapear(funciones, indices);
+    let funcionesMapeadas = mapeofunciones(cartelera);
+    mostrarFunciones(funcionesMapeadas); 
 }
 
-async function BusquedaFiltrada (){
+async function busquedaFiltrada (){
     let funcionesMapeadas;
     const titulo = await document.getElementById("Titulo").value;
     let genero = document.getElementById("Genero").value; 
     let fecha = document.getElementById("Fecha").value;
     if (genero != "") genero = parseInt(genero);
-    let result = await CargarCartelera(titulo, genero, fecha);
+    let result = await cargarCartelera(titulo, genero, fecha);
     if (result.length > 0){
-    let indices = EvitarRepeticion(result);
-    let cartelera = FuncionesAMapear(result, indices);
-    funcionesMapeadas = Mapeofunciones(cartelera);
+    let indices = evitarRepeticion(result);
+    let cartelera = funcionesAMapear(result, indices);
+    funcionesMapeadas = mapeofunciones(cartelera);
     }
-    else funcionesMapeadas = MensajeAlternativo();
-    MostrarFunciones(funcionesMapeadas);
+    else funcionesMapeadas = mensajeAlternativo();
+    mostrarFunciones(funcionesMapeadas);
 }
 
 const boton = document.getElementById("BotonBusqueda");    
 boton.addEventListener("click", (e) => {
     e.preventDefault();
-    BusquedaFiltrada();
+    busquedaFiltrada();
     document.getElementById("Desplegable-Pelicula").innerHTML = "";
     document.querySelector(".Funciones").scrollIntoView({ behavior: "smooth" });
 });
 
+const seccion =  document.querySelector(".Funciones");
 seccion.addEventListener("click", (e) => {
     e.preventDefault();
     let elementoClicado = e.target;
-    BusquedaPelicula(elementoClicado.id);
-    let PeliculaReferencia = document.getElementById("Desplegable-Pelicula");
-    PeliculaReferencia.scrollIntoView({ behavior: "smooth" });
+    busquedaPelicula(elementoClicado.id);
+    let peliculaReferencia = document.getElementById("Desplegable-Pelicula");
+    peliculaReferencia.scrollIntoView({ behavior: "smooth" });
 });
 
 document.querySelector(".EliminarFiltros") 
 .addEventListener( "click", (e) => {
     e.preventDefault();
-    CarteleraCompleta();
+    carteleraCompleta();
     document.getElementById("Desplegable-Pelicula").innerHTML = "";
     document.querySelector(".Funciones").scrollIntoView({ behavior: "smooth" });
     document.getElementById("Titulo").value = "";
@@ -58,7 +58,7 @@ document.querySelector(".EliminarFiltros")
     document.getElementById("Fecha").value = "";
 });
 
-function EvitarRepeticion(funciones){
+function evitarRepeticion(funciones){
     const contenedor = new Set();
     funciones.forEach(element => {   
         if(!contenedor.has(element.pelicula.peliculaId)){
@@ -68,7 +68,7 @@ function EvitarRepeticion(funciones){
     return contenedor;
 }
 
-function FuncionesAMapear(funciones, contenedor){
+function funcionesAMapear(funciones, contenedor){
     let functions = [];
     funciones.forEach(element => {
         if(contenedor.has(element.pelicula.peliculaId)){
@@ -79,6 +79,6 @@ function FuncionesAMapear(funciones, contenedor){
     return functions;
 }
 
-function MostrarFunciones(funcionesMapeadas){
+function mostrarFunciones(funcionesMapeadas){
     seccion.innerHTML = funcionesMapeadas;
 }; 

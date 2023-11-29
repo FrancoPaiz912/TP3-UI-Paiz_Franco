@@ -1,5 +1,5 @@
 
-function MapeadorPosters(id,titulo,poster)
+function mapeadorPosters(id,titulo,poster)
 { return `<div data-id=${id} class="card">            
             <img id=${id} src=${poster} class="card-img-top" alt="Poster de " ${titulo}>
             <div id=${id} class="card-body">
@@ -8,14 +8,14 @@ function MapeadorPosters(id,titulo,poster)
           </div>`
 };
 
-export function Mapeofunciones(cartelera){
+export function mapeofunciones(cartelera){
   let funcionesMapeadas = cartelera.map((funcion) => {
-    return MapeadorPosters( funcion.pelicula.peliculaId, funcion.pelicula.titulo, funcion.pelicula.poster);
+    return mapeadorPosters( funcion.pelicula.peliculaId, funcion.pelicula.titulo, funcion.pelicula.poster);
   }).join("");;
   return funcionesMapeadas;
 }
 
-export function MensajeAlternativo(){//Crear clases propias y dejar de depender del css de impresion tickets
+export function mensajeAlternativo(){//Crear clases propias y dejar de depender del css de impresion tickets
   return `<div class="Mensaje">
           <div class="Contenedor-Gato-Triste">
           <img class="Imagen-Gato-Triste" src="../../img/Gato-Triste.png" alt="">
@@ -27,6 +27,7 @@ export function MensajeAlternativo(){//Crear clases propias y dejar de depender 
 };
 
 export default {
-  Mapeofunciones,
-  MensajeAlternativo,
+  mapeofunciones,
+  mensajeAlternativo,
+  mensajeAlternativo,
 };

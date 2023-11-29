@@ -1,4 +1,4 @@
-export async function CargarCartelera(titulo, genero, fecha){
+export async function cargarCartelera(titulo, genero, fecha){
     const config = {
         method: 'GET',
         headers:{
@@ -18,5 +18,5 @@ export async function CargarCartelera(titulo, genero, fecha){
 
 export default 
 {
-    CargarCartelera,
+    cargarCartelera,
 };

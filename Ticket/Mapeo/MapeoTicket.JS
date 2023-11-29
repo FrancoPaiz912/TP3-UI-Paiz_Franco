@@ -1,4 +1,4 @@
-export function MapeoTiempo(Fecha){
+export function mapeoTiempo(Fecha){
     return  `
     <div id="Contenedor-MostrarFechas">
         <p>${Fecha}</p>
@@ -6,15 +6,15 @@ export function MapeoTiempo(Fecha){
     `
 }
 
-export function MapeoPoster(poster,titulo){
+export function mapeoPoster(poster,titulo){
     return `<img id="${titulo}" class="Poster" src=${poster} alt="Poster de ${titulo}">`
 }
 
-export function MapeoAnuncioHorario(){
+export function mapeoAnuncioHorario(){
     return `<h2>Horarios de la funciones</h2>`
 }
 
-export function MapeoColumnas(){
+export function mapeoColumnas(){
     return `<table>
             <thead>
                 <tr>
@@ -28,7 +28,7 @@ export function MapeoColumnas(){
           </table>`
 }
 
-export function MapeoFilas(id,sala,entradas){
+export function mapeoFilas(id,sala,entradas){
     return `<tr>
             <td class="Ancho-Columna">${sala}</td>
             <td class="Ancho-Columna">${entradas}</td>
@@ -36,7 +36,7 @@ export function MapeoFilas(id,sala,entradas){
             </tr>`
 }
 
-export function MapeoAuxiliar(id){
+export function mapeoAuxiliar(id){
     return `<div id=${id} class="id-oculta"> 
             </div>`
 }

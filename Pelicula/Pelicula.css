@@ -1,10 +1,10 @@
 #Marco-Informacion{
-    margin-top: 5rem;
     background-color: #131313;
     max-width: 80%;
-    margin-left: 10vw;
+    margin: 5rem auto;
     display: flex;
     padding: 4vh 4vw 4vw 4vh;
+    height: auto;
   }
   
   #Contenedor-Poster{

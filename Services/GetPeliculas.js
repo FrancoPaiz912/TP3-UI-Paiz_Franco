@@ -1,4 +1,4 @@
-export async function CargarPelicula(id){
+export async function cargarPelicula(id){
     const config = {
         method: 'GET',
         headers:{

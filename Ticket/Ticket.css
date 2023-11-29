@@ -7,7 +7,7 @@
     background-color: #292525;
 }
 
-#Contenedor-Imagen{
+#contenedor-Imagen{
     width: 30%;
     aspect-ratio: 2/3;
     margin: 2rem 2rem 2rem 2rem;
@@ -103,6 +103,8 @@ tr:nth-child(even) {
 .modal-header{
     height: 10vh;
     background-color: rgb(31, 7, 127);
+    justify-content: center;
+    
 }
 
 #exampleModalLabel{
@@ -111,14 +113,22 @@ tr:nth-child(even) {
 
 .modal-footer{
     background-color: rgb(31, 7, 127);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .btn-secondary{
     background-color: rgb(214, 24, 24);
+    width: 48%;
+    margin: 0;
 }
 
 .btn-primary{
     background-color: #00bd6e;
+    width: 48%;
+    margin: 0;
+    border: #00bd6e;
 }
 
 .btn-close{
@@ -153,3 +163,13 @@ tr:nth-child(even) {
 .id-oculta{
     display: none;
 }
+
+.Boton-Ticket{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.Boton-Ticket:hover{
+    background-color: #00bd6e;
+}
+

@@ -1,4 +1,4 @@
-export async function CapacidadDisponible(id){
+export async function capacidadDisponible(id){
     const config = {
         method: 'GET',
         headers:{
@@ -14,7 +14,7 @@ export async function CapacidadDisponible(id){
     }
 };
 
-export async function ComprarTicket(id,usuario,cantidad){
+export async function comprarTicket(id,usuario,cantidad){
     const config = {
         method: 'POST',
         headers:{
@@ -33,3 +33,8 @@ export async function ComprarTicket(id,usuario,cantidad){
         console.log(error);
     }
 };
+
+export default {
+    capacidadDisponible,
+    comprarTicket,
+}
