@@ -29,6 +29,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: aliceblue;
 }
 
 #Contenedor-MostrarFechas:hover{
@@ -79,7 +80,7 @@ tr:nth-child(even) {
 }
 
 .Ancho-Columna{
-    width: 35%;
+    width: 20%;
 }
 
 #LogoModal{

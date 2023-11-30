@@ -15,9 +15,5 @@ function mostarInfoPelicula(pelicula,id){
     boton.addEventListener( "click", () => {
         window.open(`../Ticket/CompraTickets.html?Pelicula=${id}`);
     });
-
-
-
-
 }
 

@@ -58,11 +58,7 @@ async function mostrarHorarios(fecha){
         contenedor.innerHTML = funcionesMapeadas;
         contenedor.addEventListener("click", (e) => {
             let elementoClicado = e.target;
-            funcionesByHorario(funciones, elementoClicado.textContent);
-            const elementoLimpio = elementoClicado.textContent.replace(/[\n\r\s]+/g, '').trim();
-            if (elementoLimpio.length <= 5){
-                elementoClicado.classList.toggle('funcion-Seleccionada');
-            }        
+            funcionesByHorario(funciones, elementoClicado.textContent);       
         });
     }
 }
@@ -86,7 +82,10 @@ async function funcionesByHorario(funciones, horario) {
     let horariosmapeados = await Promise.all(funciones.map(async funcion => {
         if(funcion.horario == horarioLimpio){
             const capacidad = await capacidadDisponible(funcion.funcionId);
-            return mapeoFilas(funcion.funcionId,funcion.sala.nombre,capacidad.cantidad);
+            let fecha = new Date(funcion.fecha);
+            let fechaArgentina =fecha.toLocaleDateString('es-AR');
+            const fechayMes = fechaArgentina.substring(0, fechaArgentina.lastIndexOf('/'));
+            return mapeoFilas(funcion.funcionId,funcion.sala.nombre,capacidad.cantidad,fechayMes,funcion.horario);
         }        
     }));
     tabla.innerHTML = horariosmapeados.join("");

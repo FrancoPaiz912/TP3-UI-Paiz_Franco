@@ -1,7 +1,7 @@
 export function mapeoTiempo(Fecha){
     return  `
     <div id="Contenedor-MostrarFechas">
-        <p>${Fecha}</p>
+        ${Fecha}
     </div>
     `
 }
@@ -18,6 +18,8 @@ export function mapeoColumnas(){
     return `<table>
             <thead>
                 <tr>
+                    <th>Fecha</th>
+                    <th>Horario</th>
                     <th>Sala</th>
                     <th>Entradas dispobles</th>
                     <th>Comprar</th>
@@ -28,8 +30,10 @@ export function mapeoColumnas(){
           </table>`
 }
 
-export function mapeoFilas(id,sala,entradas){
+export function mapeoFilas(id,sala,entradas,fecha,horario){
     return `<tr>
+            <td class="Ancho-Columna">${fecha}</td>
+            <td class="Ancho-Columna">${horario}</td>
             <td class="Ancho-Columna">${sala}</td>
             <td class="Ancho-Columna">${entradas}</td>
             <td id="${id}" type="button" class="btn btn-primary Ancho-Columna Boton-Ticket" data-bs-toggle="modal" data-bs-target="#exampleModal">Comprar Tickets</td>

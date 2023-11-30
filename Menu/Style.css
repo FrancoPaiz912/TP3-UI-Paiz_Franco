@@ -37,6 +37,7 @@ header{
   margin: 1rem auto;
   display:flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   padding: 2rem;
   background-color: #292525;
@@ -54,11 +55,11 @@ textarea {
 }
 
 label {
-  height: 4vh;
   color: aliceblue;
   font-weight: bold;
-  display: inline-block;
   margin-left: 1rem;
+  margin-right: 1rem;
+  align-items: center;
 }
 
 select{

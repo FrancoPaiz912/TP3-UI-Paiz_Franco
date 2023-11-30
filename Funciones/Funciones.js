@@ -6,7 +6,7 @@ window.onload = async function() {
      carteleraCompleta();
 };
 
-async function carteleraCompleta(){//Para que al eliminar filtros, no se recargue la página y pueda centrarce en las peliculas
+async function carteleraCompleta(){
     let funciones = await cargarCartelera("","",""); 
     let indices = evitarRepeticion(funciones);
     let cartelera = funcionesAMapear(funciones, indices);
