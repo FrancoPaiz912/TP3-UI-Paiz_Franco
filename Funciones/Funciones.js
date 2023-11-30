@@ -1,6 +1,6 @@
-import { mapeofunciones, mensajeAlternativo } from "./mapeo/mapeoFunciones.js";
-import { cargarCartelera } from "../services/getFunciones.js";
-import { busquedaPelicula } from "../Pelicula/Pelicula.js";
+import { mapeofunciones, mensajeAlternativo } from "./mapeo/MapeoFunciones.JS";
+import { cargarCartelera } from "../services/getFunciones.JS";
+import { busquedaPelicula } from "../Pelicula/Pelicula.JS";
 
 
 window.onload = async function() {
@@ -83,3 +83,14 @@ function funcionesAMapear(funciones, contenedor){
 function mostrarFunciones(funcionesMapeadas){
     seccion.innerHTML = funcionesMapeadas;
 }; 
+
+window.addEventListener('scroll', function() {
+    var nav = document.querySelector('.sticky-nav');
+    var scrollPosition = window.scrollY;
+  
+    if (scrollPosition > 100) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });

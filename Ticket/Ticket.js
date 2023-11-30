@@ -1,6 +1,6 @@
-import { cargarCartelera } from "../services/getFunciones.js";
-import { cargarPelicula } from "../services/getPeliculas.js";
-import { capacidadDisponible,comprarTicket } from "../services/getTickets.js";
+import { cargarCartelera } from "../services/getFunciones.JS";
+import { cargarPelicula } from "../services/getPeliculas.JS";
+import { capacidadDisponible,comprarTicket } from "../services/getTickets.JS";
 import { mapeoFilasDisponibles } from "./Mapeo/MapeoTicket.JS";
 import { mapeoFilasNoDisponibles } from "./Mapeo/MapeoTicket.JS";
 import { mapeoAuxiliar } from "./mapeo/mapeoTicket.JS";
@@ -16,7 +16,7 @@ window.onload = async function ()  {
     let contenedorposter = document.getElementById("contenedor-imagen");
     contenedorposter.innerHTML = poster;
     mostrarFechas(pelicula.funciones);
-    let peliculaReferencia = document.getElementById("contenedor-fechas");
+    let peliculaReferencia = document.getElementById("info-peli");
     peliculaReferencia.scrollIntoView({ behavior: "smooth" });
 };
 
@@ -50,7 +50,7 @@ async function mostrarHorarios(fecha){
         anuncio.innerHTML = mapeoAnuncioHorario();
         let contenedor = document.querySelector(".mostrar-horarios");
         let nombre = document.querySelector(".poster").id;
-        let funciones = await cargarCartelera(nombre,"",fechaLimpia); //Para las fechas hago un get de peliculabyid es por eso que le puedo pasar el array de funciones
+        let funciones = await cargarCartelera(nombre,"",fechaLimpia); 
         let horariosSinRepeticion = filtrarHorarios(funciones);
         let horarioOrdenado = ordenarHora(horariosSinRepeticion);
         let funcionesMapeadas = horarioOrdenado.map( funcion => {
@@ -88,7 +88,6 @@ async function funcionesByHorario(funciones, horario) {
             const fechayMes = fechaArgentina.substring(0, fechaArgentina.lastIndexOf('/'));
             if(capacidad.cantidad>0){
                 return mapeoFilasDisponibles(funcion.funcionId,funcion.sala.nombre,capacidad.cantidad,fechayMes,funcion.horario, funcion.sala.capacidad);
-                document.getElementById("miBoton").disabled = true;
             }
             else{
                 return mapeoFilasNoDisponibles(funcion.funcionId,funcion.sala.nombre,capacidad.cantidad,fechayMes,funcion.horario, funcion.sala.capacidad);    
@@ -161,7 +160,7 @@ compraTicket.addEventListener("click", () => {
     }
 });
 
-function ordenarFechas(fechas){ //Y si le enviamos directamente el formato como se recibe desde el get?
+function ordenarFechas(fechas){ 
     let fechasOrdenadas = [];
     fechasOrdenadas.push(fechas[0]);
     let fechaActual = new Date();
@@ -216,3 +215,14 @@ function ordenarHora(Horas){
     }
     return horasOrdenadas;
 }
+
+window.addEventListener('scroll', function() {
+    var nav = document.querySelector('.sticky-nav');
+    var scrollPosition = window.scrollY;
+  
+    if (scrollPosition > 100) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+});
