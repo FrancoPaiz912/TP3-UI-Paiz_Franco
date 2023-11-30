@@ -1,4 +1,4 @@
-#Contenedor-Fechas{
+#contenedor-fechas{
     width: 80%;
     height: auto;
     margin: 2rem auto;
@@ -7,20 +7,20 @@
     background-color: #292525;
 }
 
-#contenedor-Imagen{
+#contenedor-imagen{
     width: 30%;
     aspect-ratio: 2/3;
     margin: 2rem 2rem 2rem 2rem;
 }
 
-#Proximas-Funciones{
+#proximas-funciones{
     display: flex;
     width: 70%;
     margin: 2rem auto;
     flex-direction: column;
 }
 
-#Contenedor-MostrarFechas{
+#contenedor-mostrar-fechas{
     border: 2px solid rgb(117, 130, 142);
     border-radius: 3rem;
     width: 15%;
@@ -32,29 +32,29 @@
     color: aliceblue;
 }
 
-#Contenedor-MostrarFechas:hover{
+#contenedor-mostrar-fechas:hover{
     box-shadow: 1px  5px 10px whitesmoke;
     transform: scale(1.05);
     background-color: rgb(12, 12, 124);
 }
 
-.Mostrar-Fechas{
+.mostrar-fechas{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
-.Mostrar-Horarios{
+.mostrar-horarios{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     height: 100%;
 }
 
-#Datos-Funciones{
+#datos-funciones{
     background-color: #4d4646;
 }
 
-#Contenedor-Funciones{
+#contenedor-funciones{
     width: 80%;
     align-items: center; 
     margin: 0 auto;
@@ -79,11 +79,11 @@ tr:nth-child(even) {
     background-color: #4d4646;
 }
 
-.Ancho-Columna{
-    width: 20%;
+.ancho-columna{
+    width: 16.66%;
 }
 
-#LogoModal{
+#logo-modal{
     width: 10rem;
     height: 9rem;
     margin-top: 1rem;
@@ -91,12 +91,12 @@ tr:nth-child(even) {
     padding: none;
 }
 
-#Label-Modal{
+#label-modal{
     color: black;
     width: 30%;
 }
 
-.Input-Modal{
+.input-modal{
     border-radius: 10px;
     width: 50% !important;
 }
@@ -140,7 +140,7 @@ tr:nth-child(even) {
     width: 100%;
 }
 
-.Ticket{
+.ticket{
     width: 80%;
     height: auto;
     margin: 2rem auto;
@@ -154,7 +154,7 @@ tr:nth-child(even) {
     background-size: contain;
 }
 
-.Campo-Ticket{
+.campo-ticket{
     margin-left: 2rem;
     color:rgb(255, 255, 0);
     width: 90%;
@@ -165,16 +165,7 @@ tr:nth-child(even) {
     display: none;
 }
 
-.Boton-Ticket{
-    width: 80%;
-    margin: 0 auto;
-}
-
-.Boton-Ticket:hover{
-    background-color: #00bd6e;
-}
-
-.funcion-Seleccionada{
+.funcion-seleccionada{
     background-color: rgb(16, 16, 132);
 }
 
@@ -184,4 +175,27 @@ tr:nth-child(even) {
 
 .btn-secondary:hover{
     background-color: red;
+}
+
+.boton-ticket{
+    width: 80%;
+    margin: 0 auto;
+    background-color: #00bd6e;
+    min-width: 87px;
+}
+
+.boton-ticket:hover{
+    background-color: #00bd6e;
+}
+
+.boton-no-ticket{
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgb(209, 46, 46);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.boton-no-ticket:hover{
+    background-color: rgb(209, 46, 46);
 }

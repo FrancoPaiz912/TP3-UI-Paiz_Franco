@@ -1,21 +1,22 @@
-import { cargarCartelera } from "../Services/GetFunciones.js";
-import { cargarPelicula } from "../Services/GetPeliculas.js";
-import { capacidadDisponible,comprarTicket } from "../Services/GetTickets.js";
-import { mapeoAuxiliar } from "./Mapeo/MapeoTicket.JS";
-import { mapeoAnuncioHorario } from "./Mapeo/MapeoTicket.JS";
-import { mapeoFilas } from "./Mapeo/MapeoTicket.JS";
-import { mapeoColumnas } from "./Mapeo/MapeoTicket.JS";
-import { mapeoPoster,mapeoTiempo } from "./Mapeo/MapeoTicket.JS";
+import { cargarCartelera } from "../services/getFunciones.js";
+import { cargarPelicula } from "../services/getPeliculas.js";
+import { capacidadDisponible,comprarTicket } from "../services/getTickets.js";
+import { mapeoFilasDisponibles } from "./Mapeo/MapeoTicket.JS";
+import { mapeoFilasNoDisponibles } from "./Mapeo/MapeoTicket.JS";
+import { mapeoAuxiliar } from "./mapeo/mapeoTicket.JS";
+import { mapeoAnuncioHorario } from "./mapeo/mapeoTicket.JS";
+import { mapeoColumnas } from "./mapeo/mapeoTicket.JS";
+import { mapeoPoster,mapeoTiempo } from "./mapeo/mapeoTicket.JS";
 
 window.onload = async function ()  {
     const url = new URLSearchParams(window.location.search);
-    const id = url.get('Pelicula');
+    const id = url.get('pelicula');
     const pelicula = await cargarPelicula(id);
     let poster = await mapeoPoster(pelicula.poster,pelicula.titulo);
-    let contenedorposter = document.getElementById("contenedor-Imagen");
+    let contenedorposter = document.getElementById("contenedor-imagen");
     contenedorposter.innerHTML = poster;
     mostrarFechas(pelicula.funciones);
-    let peliculaReferencia = document.getElementById("Contenedor-Fechas");
+    let peliculaReferencia = document.getElementById("contenedor-fechas");
     peliculaReferencia.scrollIntoView({ behavior: "smooth" });
 };
 
@@ -25,7 +26,7 @@ function mostrarFechas(funciones){
     let fechasMapeadas = fechasOrdenadas.map( fecha => {
         return mapeoTiempo(fecha);
     }).join("");
-    let mostrarFechas = document.querySelector(".Mostrar-Fechas");
+    let mostrarFechas = document.querySelector(".mostrar-fechas");
     mostrarFechas.innerHTML = fechasMapeadas;
 }
 
@@ -45,10 +46,10 @@ function filtrarFechas(funcion){
 async function mostrarHorarios(fecha){
     const fechaLimpia = fecha.replace(/[\n\r\s]+/g, '').trim();    
     if(fechaLimpia.length <= 5){
-        let anuncio = document.querySelector(".Anuncio-Horario");
+        let anuncio = document.querySelector(".anuncio-horario");
         anuncio.innerHTML = mapeoAnuncioHorario();
-        let contenedor = document.querySelector(".Mostrar-Horarios");
-        let nombre = document.querySelector(".Poster").id;
+        let contenedor = document.querySelector(".mostrar-horarios");
+        let nombre = document.querySelector(".poster").id;
         let funciones = await cargarCartelera(nombre,"",fechaLimpia); //Para las fechas hago un get de peliculabyid es por eso que le puedo pasar el array de funciones
         let horariosSinRepeticion = filtrarHorarios(funciones);
         let horarioOrdenado = ordenarHora(horariosSinRepeticion);
@@ -76,16 +77,22 @@ function filtrarHorarios(funcion){
 async function funcionesByHorario(funciones, horario) {
     const horarioLimpio = horario.replace(/[\n\r\s]+/g, '').trim(); 
     if(horarioLimpio.length <= 5){
-    let contenedor = document.getElementById("Contenedor-Funciones");
+    let contenedor = document.getElementById("contenedor-funciones");
     contenedor.innerHTML = mapeoColumnas();
-    let tabla = document.getElementById("Datos-Funciones");
+    let tabla = document.getElementById("datos-funciones");
     let horariosmapeados = await Promise.all(funciones.map(async funcion => {
         if(funcion.horario == horarioLimpio){
             const capacidad = await capacidadDisponible(funcion.funcionId);
             let fecha = new Date(funcion.fecha);
             let fechaArgentina =fecha.toLocaleDateString('es-AR');
             const fechayMes = fechaArgentina.substring(0, fechaArgentina.lastIndexOf('/'));
-            return mapeoFilas(funcion.funcionId,funcion.sala.nombre,capacidad.cantidad,fechayMes,funcion.horario);
+            if(capacidad.cantidad>0){
+                return mapeoFilasDisponibles(funcion.funcionId,funcion.sala.nombre,capacidad.cantidad,fechayMes,funcion.horario, funcion.sala.capacidad);
+                document.getElementById("miBoton").disabled = true;
+            }
+            else{
+                return mapeoFilasNoDisponibles(funcion.funcionId,funcion.sala.nombre,capacidad.cantidad,fechayMes,funcion.horario, funcion.sala.capacidad);    
+            }
         }        
     }));
     tabla.innerHTML = horariosmapeados.join("");
@@ -107,11 +114,11 @@ async function comprarEntradas(id,usuario,cantidad){
     else{
         let ticket = await comprarTicket(id,usuario,cantidad);
         const ticketJSON = JSON.stringify(ticket);
-        window.location.href = (`./Impresion/ImpresionTicket.html?Ticket=${encodeURIComponent(ticketJSON)}`);
+        window.location.href = (`./Impresion/ImpresionTicket.html?ticket=${encodeURIComponent(ticketJSON)}`);
     }
 }
 
-const eventoFunciones = document.querySelector(".Mostrar-Fechas");
+const eventoFunciones = document.querySelector(".mostrar-fechas");
 eventoFunciones.addEventListener( "click", (e) => {
     let elementoClicado = e.target;
     mostrarHorarios(elementoClicado.textContent);
@@ -130,7 +137,7 @@ cantidad.addEventListener( "change", () => {
 });
 
 
-const compraTicket = document.getElementById("Compra-Ticket");
+const compraTicket = document.getElementById("compra-ticket");
 compraTicket.addEventListener("click", () => {
     const usuario = document.getElementById("usuario").value;
     const cantidad = document.getElementById("cantidad-entradas").value;

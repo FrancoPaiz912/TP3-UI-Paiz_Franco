@@ -34,27 +34,27 @@
     text-align: center;
   }
 
-  .Mensaje{
+  .mensaje{
     display: flex;
     width: 60%;
     height: 80%;
     margin: 0 auto;
   }
 
-  .Contenedor-Gato-Triste{
+  .contenedor-gato-triste{
     margin-top: -5vh;
   }
 
-  .Imagen-Gato-Triste{
+  .imagen-gato-triste{
     height: 100vh;
   }
 
-  .Contenedor-Dialogo-Negativo{
+  .contenedor-dialogo-negativo{
     padding-top: 10vh;
     padding-right: 5vw;
   }
 
-  .Imagen-Dialogo-Negativo{
+  .imagen-dialogo-negativo{
     height: 50vh;
     margin-left: -5rem; 
     margin-top: 20vh;

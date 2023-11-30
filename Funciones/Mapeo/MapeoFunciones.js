@@ -16,12 +16,12 @@ export function mapeofunciones(cartelera){
 }
 
 export function mensajeAlternativo(){//Crear clases propias y dejar de depender del css de impresion tickets
-  return `<div class="Mensaje">
-          <div class="Contenedor-Gato-Triste">
-          <img class="Imagen-Gato-Triste" src="../../img/Gato-Triste.png" alt="">
+  return `<div class="mensaje">
+          <div class="contenedor-gato-triste">
+          <img class="imagen-gato-triste" src="../../img/Gato-Triste.png" alt="">
           </div>
-          <div class="Contenedor-Dialogo-Negativo">
-          <img class="Imagen-Dialogo-Negativo" src="../../img/Cuadro-Dialogo-NotFound.png" alt="">
+          <div class="contenedor-dialogo-negativo">
+          <img class="imagen-dialogo-negativo" src="../../img/Cuadro-Dialogo-NotFound.png" alt="">
           </div>
           </div>` 
 };

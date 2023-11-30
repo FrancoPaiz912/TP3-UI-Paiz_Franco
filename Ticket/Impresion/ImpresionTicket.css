@@ -1,4 +1,4 @@
-.Ticket{
+.ticket{
     width: 90%;
     height: auto;
     margin: 2rem auto;
@@ -13,7 +13,7 @@
     padding: 2% 0 2% 0;
 }
 
-.Campo-Ticket{
+.campo-ticket{
     margin-left: 2rem;
     color:#67ebfa;
     width: 90%;
@@ -21,14 +21,14 @@
     text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 25px rgb(0, 0, 0), 0 0 5px rgb(0, 0, 0);
 }
 
-.Contenedor-Tickets{
+.contenedor-tickets{
     width: 50%;
     background-color: #131313;
     margin: 2rem auto;
     padding: 1rem 0 1rem 0;
 }
 
-.Agradecimiento{
+.agradecimiento{
     display: flex;
     width: 60%;
     height: 80%;
@@ -36,19 +36,19 @@
     user-select: none;
 }
 
-.Contenedor-Gato{
+.contenedor-gato{
     height: 80%;
 }
 
-.Imagen-Gato{
+.imagen-gato{
     margin-left: 5rem;
 }
 
-.Contenedor-Dialogo{
+.contenedor-dialogo{
     height: 20%;
 }
 
-.Imagen-Dialogo{
+.imagen-dialogo{
     height: 30rem;
     margin-left: -5rem;    
 }

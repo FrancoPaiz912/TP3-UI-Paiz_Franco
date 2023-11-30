@@ -1,6 +1,7 @@
-import { mapeofunciones, mensajeAlternativo } from "./Mapeo/MapeoFunciones.js";
+import { mapeofunciones, mensajeAlternativo } from "./mapeo/mapeoFunciones.js";
+import { cargarCartelera } from "../services/getFunciones.js";
 import { busquedaPelicula } from "../Pelicula/Pelicula.js";
-import { cargarCartelera } from "../Services/GetFunciones.js";
+
 
 window.onload = async function() {
      carteleraCompleta();
@@ -16,9 +17,9 @@ async function carteleraCompleta(){
 
 async function busquedaFiltrada (){
     let funcionesMapeadas;
-    const titulo = await document.getElementById("Titulo").value;
-    let genero = document.getElementById("Genero").value; 
-    let fecha = document.getElementById("Fecha").value;
+    const titulo = await document.getElementById("titulo").value;
+    let genero = document.getElementById("genero").value; 
+    let fecha = document.getElementById("fecha").value;
     if (genero != "") genero = parseInt(genero);
     let result = await cargarCartelera(titulo, genero, fecha);
     if (result.length > 0){
@@ -30,32 +31,32 @@ async function busquedaFiltrada (){
     mostrarFunciones(funcionesMapeadas);
 }
 
-const boton = document.getElementById("BotonBusqueda");    
+const boton = document.getElementById("boton-busqueda");    
 boton.addEventListener("click", (e) => {
     e.preventDefault();
     busquedaFiltrada();
-    document.getElementById("Desplegable-Pelicula").innerHTML = "";
-    document.querySelector(".Funciones").scrollIntoView({ behavior: "smooth" });
+    document.getElementById("desplegable-pelicula").innerHTML = "";
+    document.querySelector(".funciones").scrollIntoView({ behavior: "smooth" });
 });
 
-const seccion =  document.querySelector(".Funciones");
+const seccion =  document.querySelector(".funciones");
 seccion.addEventListener("click", (e) => {
     e.preventDefault();
     let elementoClicado = e.target;
     busquedaPelicula(elementoClicado.id);
-    let peliculaReferencia = document.getElementById("Desplegable-Pelicula");
+    let peliculaReferencia = document.getElementById("desplegable-pelicula");
     peliculaReferencia.scrollIntoView({ behavior: "smooth" });
 });
 
-document.querySelector(".EliminarFiltros") 
+document.querySelector(".eliminar-filtros") 
 .addEventListener( "click", (e) => {
     e.preventDefault();
     carteleraCompleta();
-    document.getElementById("Desplegable-Pelicula").innerHTML = "";
-    document.querySelector(".Funciones").scrollIntoView({ behavior: "smooth" });
-    document.getElementById("Titulo").value = "";
-    document.getElementById("Genero").value = "";
-    document.getElementById("Fecha").value = "";
+    document.getElementById("desplegable-pelicula").innerHTML = "";
+    document.querySelector(".funciones").scrollIntoView({ behavior: "smooth" });
+    document.getElementById("titulo").value = "";
+    document.getElementById("genero").value = "";
+    document.getElementById("fecha").value = "";
 });
 
 function evitarRepeticion(funciones){
