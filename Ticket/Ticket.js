@@ -59,6 +59,10 @@ async function mostrarHorarios(fecha){
         contenedor.addEventListener("click", (e) => {
             let elementoClicado = e.target;
             funcionesByHorario(funciones, elementoClicado.textContent);
+            const elementoLimpio = elementoClicado.textContent.replace(/[\n\r\s]+/g, '').trim();
+            if (elementoLimpio.length <= 5){
+                elementoClicado.classList.toggle('funcion-Seleccionada');
+            }        
         });
     }
 }

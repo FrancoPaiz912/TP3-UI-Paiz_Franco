@@ -1,9 +1,9 @@
 #Marco-Informacion{
-    background-color: #131313;
+    background-color: #292525;
     max-width: 80%;
-    margin: 5rem auto;
+    margin: 2rem auto;
     display: flex;
-    padding: 4vh 4vw 4vw 4vh;
+    padding: 2vh 2vw 0 2vh;
     height: auto;
   }
   
@@ -13,8 +13,8 @@
   }
   
   .Poster{
-    height: 100%;
     width: 100%;
+    aspect-ratio: 2/3;
     border: solid 2px;
     border-color: goldenrod;
     margin-bottom: none;

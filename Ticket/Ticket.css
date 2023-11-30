@@ -173,3 +173,14 @@ tr:nth-child(even) {
     background-color: #00bd6e;
 }
 
+.funcion-Seleccionada{
+    background-color: rgb(16, 16, 132);
+}
+
+.btn-primary:hover{
+    background-color: #02d87f
+}
+
+.btn-secondary:hover{
+    background-color: red;
+}

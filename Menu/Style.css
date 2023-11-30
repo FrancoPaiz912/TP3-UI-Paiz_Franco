@@ -7,6 +7,8 @@ header{
   height: 100vh;
   background-image: url('../img/HeaderCine2.jpg');
   background-size: cover;
+  background-position: center;
+  user-select: none;
 }
 
 .Pantalla-Cine{
@@ -20,7 +22,6 @@ header{
 #LogoDelCine{
   margin: 0 auto;  
   width: 25vw;
-  padding-top: 5.5vh;
 }
 
 #TituloCine{
@@ -32,9 +33,13 @@ header{
 }
 
 .Filtros {
+  width: 90%;
+  margin: 1rem auto;
   display:flex;
   justify-content: center;
+  flex-wrap: wrap;
   padding: 2rem;
+  background-color: #292525;
 }
 
 input[type="text"],
@@ -44,9 +49,12 @@ textarea {
   height: 3vh;
   border-radius: 10px;
   display: inline-block;
+  min-width: 135px;
+  padding: 1vh 1vh 1vh 1vh; 
 }
 
 label {
+  height: 4vh;
   color: aliceblue;
   font-weight: bold;
   display: inline-block;
@@ -58,6 +66,7 @@ select{
   height: 3vh;
   border-radius: 10px;
   display: inline-block;
+  min-width: 135px;
 }
 
 button {
@@ -95,14 +104,14 @@ li a:hover {
 }
 
 section{
-  height: auto !important;
+  height: auto;
 }
 
 .Funciones{
   padding: 2rem 10rem 2rem 10rem;
   display: flex;
   flex-wrap: wrap;
-  height: auto;
+  user-select: none;
 }
 
 h2{
@@ -110,10 +119,12 @@ h2{
   text-align: center;
 }
 
+.botones-Menu{
+  min-width: 116.10px;
+}
+
 .EliminarFiltros{
   background-color: rgb(238, 104, 104);
-  max-width: 100%;
-  white-space: nowrap;
 }
 
 #Cartelera{
