@@ -1,5 +1,5 @@
-import { cargarPelicula } from "../Services/GetPeliculas.js";
-import { mapeadorInformacion } from "./Mapeo/MapeoPelicula.js";
+import { cargarPelicula } from "../services/getPeliculas.JS";
+import { mapeadorInformacion } from "./mapeo/mapeoPelicula.JS";
 
 
 export async function busquedaPelicula(id){
@@ -9,11 +9,11 @@ export async function busquedaPelicula(id){
 }
 
 function mostarInfoPelicula(pelicula,id){
-    const informacionPelicula = document.getElementById("Desplegable-Pelicula");
+    const informacionPelicula = document.getElementById("desplegable-pelicula");
     informacionPelicula.innerHTML = pelicula;
-    let boton = document.getElementById('ConsultarFunciones-Dia-Horario');
+    let boton = document.getElementById('consultar-funciones-dia-horario');
     boton.addEventListener( "click", () => {
-        window.open(`../Ticket/CompraTickets.html?Pelicula=${id}`);
+        window.open(`../ticket/compraTickets.html?pelicula=${id}`);
     });
 }
 

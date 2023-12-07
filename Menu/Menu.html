@@ -5,31 +5,37 @@
     <link rel="Icon" href="../img/Cat_Favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="Style.css">
-    <link rel="stylesheet" href="../Funciones/Funciones.css">
-    <link rel="stylesheet" href="../Pelicula/Pelicula.css">
-    <link rel="stylesheet" href="../Ticket/Impresion/ImpresionTicket.css"> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../funciones/funciones.css">
+    <link rel="stylesheet" href="../pelicula/pelicula.css">
+    <link rel="stylesheet" href="../ticket/impresion/impresionTicket.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300&family=Playpen+Sans:wght@800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <nav class="sticky-nav">
+        <div class="sticky-nombre">
+            <h2>Cinema Rocket</h2>
+        </div>
+        <div class="sticky-infomacion">
+            <div class="sticky-funciones"><a href="#filtros"><h5>Funciones</h5></a>
+            </div>
+            <div class="sticky-inicio"><a href="menu.html"><h5>Inicio</h5></a>
+            </div>
+        </div>
+    </nav>
     <header>
-        <ul>
-            <li><a href="#Sucursales">Sucursales</a></li>
-            <li><a href="#Promociones">Promociones</a></li>
-            <li><a href="#InfoCine">Acerca de nosotros</a></li>
-         </ul>
-        <div class="Pantalla-Cine">
-        <img id="LogoDelCine" src="../img/LogoGatoNegro.png" alt="LogoDelCine">
-        <h1 id="TituloCine"> Cinema Rocket </h1>
+        <div class="pantalla-cine">
+        <img id="logo-cine" src="../img/LogoGatoNegro.png" alt="Logo Del Cine">
+        <h1 id="titulo-cine"> Cinema Rocket </h1>
         </div>
     </header>
     <nav> 
-            <form class="Filtros">
-                <label for="Titulo">Titulo:</label>
-                <input type="text" name="Titulo" id="Titulo" value="" placeholder="Nombre Pelicula">
-                <label for="Genero" >Genero:</label>
-                <select id="Genero">
+            <form id="filtros" class="filtros">
+                <label for="titulo">Titulo:</label>
+                <input type="text" name="titulo" id="titulo" value="" placeholder="Nombre Pelicula">
+                <label for="genero" >Genero:</label>
+                <select id="genero">
                 <option value="" selected>Seleccione género...</option> <!-- Aunque esto debe ser dinamico-->
                 <option value="1">Acción</option>
                 <option value="2">Aventuras</option>
@@ -42,20 +48,19 @@
                 <option value="9">Suspenso</option>
                 <option value="10">Terror</option>
                 </select>
-                <label for="Fecha" >Fecha:</label>
-                <input type="date" name="Fecha" id="Fecha">
-                <button type="submit" class="botones-Menu" id="BotonBusqueda">Buscar</button>
-                <button type="submit" Class="EliminarFiltros botones-Menu">Limpiar Filtros</button>
+                <label for="fecha" >Fecha:</label>
+                <input type="date" name="fecha" id="fecha">
+                <button type="submit" class="botones-menu" id="boton-busqueda">Buscar</button>
+                <button type="submit" Class="eliminar-filtros botones-menu">Limpiar Filtros</button>
             </form>
     </nav>
-
     <section> 
-        <div id="Desplegable-Pelicula"> 
+        <div id="desplegable-pelicula"> 
         </div> 
-        <div id="Cartelera"> 
+        <div id="cartelera"> 
             <h2 id="anuncio-cartelera">Cartelera</h2> 
         </div> 
-        <div class="Funciones"> 
+        <div class="funciones"> 
         </div> 
     </section> 
 
@@ -63,7 +68,7 @@
             <div class="contenedor-footer">
                 <div class="contenedor-informacion">
                     <h4 class="mensaje-footer">
-                    <p>Dirección: Calle falsa 123, Springfield, Buenos Aires.</p>
+                    <p>Dirección: Av. Calchaquí 3950, B1879 Quilmes, Provincia de Buenos Aires</p>
 
                     <p>Teléfonos: (011) 3464-1143.</p>
                 
@@ -82,6 +87,6 @@
             </div>
     </footer>
 
-<script src="../Funciones/Funciones.js" type="module"></script>
+<script src="../funciones/funciones.js" type="module"></script>
 </body>
 </html>
